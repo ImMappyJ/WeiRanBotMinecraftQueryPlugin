@@ -35,6 +35,7 @@ public class EventExecutor extends Thread{
                 }
             } catch (InterruptedException | ExecutionException | IOException e) {
                 CQ.sendGroupMsg(GroupID,LanguageUtil.CatchException);
+                CQ.logInfo("",e);
             }
         }
     }
@@ -66,7 +67,8 @@ public class EventExecutor extends Thread{
                                 GetArcadeStats getMiniWallsStats = new GetArcadeStats(GroupID,CQ,apiKey,theConsumer(),matcher.group(4),"miniwalls");
                                 return true;
                             default:
-                                return false;
+                                GetArcadeStats getArcadeStats = new GetArcadeStats(GroupID,CQ,apiKey,theConsumer(),matcher.group(4),"");
+                                return true;
                         }
                     case"mw":
                     case"megawalls":

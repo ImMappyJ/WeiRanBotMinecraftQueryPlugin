@@ -86,6 +86,7 @@ public class GetPlayerInfo extends AbstractGet {
             CQ.sendGroupMsg(GroupID, LanguageUtil.Hypixel_InvalidKey);
         }catch (NullPointerException | IOException | InterruptedException | ExecutionException e){
             e.printStackTrace();
+            CQ.sendGroupMsg(GroupID,LanguageUtil.CatchException);
             CQ.logInfo(LanguageUtil.CatchException,e);
         }
     }
