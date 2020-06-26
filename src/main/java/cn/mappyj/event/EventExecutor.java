@@ -6,6 +6,7 @@ import net.hypixel.api.reply.AbstractReply;
 import org.meowy.cqp.jcq.entity.CoolQ;
 
 import java.io.IOException;
+import java.util.Objects;
 import java.util.UUID;
 import java.util.concurrent.ExecutionException;
 import java.util.function.BiConsumer;
@@ -72,7 +73,8 @@ public class EventExecutor extends Thread{
                         }
                     case"mw":
                     case"megawalls":
-                        GetMegaWallsStats getMegaWallsStats = new GetMegaWallsStats(GroupID,CQ,apiKey,theConsumer(),matcher.group(3));
+                        if(Objects.isNull(matcher.group(4))||matcher.group(4).equals("")){GetMegaWallsStats getMegaWallsStats = new GetMegaWallsStats(GroupID,CQ,apiKey,theConsumer(),matcher.group(3));}
+                        else{GetMegaWallsStats getMegaWallsStats = new GetMegaWallsStats(GroupID,CQ,apiKey,theConsumer(),matcher.group(3),matcher.group(4));}
                         return true;
                     default: return false;
                 }
