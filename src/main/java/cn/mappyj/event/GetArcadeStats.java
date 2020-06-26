@@ -48,30 +48,28 @@ public class GetArcadeStats extends AbstractGetPlayerStatsInfo{
                 击杀:2  死亡:3  KD:2/3
                  */
                 msg.append("[Hypixel]已查询到").append(playerName).append("的街机信息:")
-                        .append("\n").append("硬币:").append(Coins).append("  ").append("击杀凋零:").append(KillWitherCounts)
+                        .append("\n").append("硬币:").append(Coins).append("  ").append("击杀凋零:").append(KillWitherCounts).append("最终击杀:").append(FinalKills)
                         .append("\n").append("击杀:").append(Kills).append("  ").append("死亡:").append(Deaths).append("  ").append("KD:").append(format.format(KD));
 
                 CQ.sendGroupMsg(GroupID,msg.toString());
                 return;
             case"farmhunt":
-                JsonElement json_SeekerWin,json_HunterWin,json_PoopCollect;
-                json_SeekerWin = statsJson.get("seeker_wins_hide_and_seek");
-                json_HunterWin = statsJson.get("wins_farm_hunt");
+                JsonElement json_Win,json_PoopCollect;
+                json_Win = statsJson.get("wins_farm_hunt");
                 json_PoopCollect = statsJson.get("poop_collected");
 
-                int SeekerWin,HunterWin,PoopCollect;
+                int Win,PoopCollect;
 
-                SeekerWin = isnull(json_SeekerWin)?0:json_SeekerWin.getAsInt();
-                HunterWin = isnull(json_HunterWin)?0:json_HunterWin.getAsInt();
+                Win = isnull(json_Win)?0:json_Win.getAsInt();
                 PoopCollect = isnull(json_PoopCollect)?0:json_PoopCollect.getAsInt();
                 /*
                 [Hypixel]已查询到Player的街机信息:
                 硬币:22222  收集粑粑1个
-                动物获胜1局 农夫获胜1局
+                共获胜**局
                  */
                 msg.append("[Hypixel]已查询到").append(playerName).append("的街机信息:")
                         .append("\n").append("硬币:").append(Coins).append("  ").append("收集粑粑").append(PoopCollect).append("个")
-                        .append("\n").append("动物获胜").append(SeekerWin).append("局").append("  ").append("农夫获胜").append(HunterWin).append("局");
+                        .append("\n").append("共获胜").append(Win).append("局");
 
                 CQ.sendGroupMsg(GroupID,msg.toString());
                 return;

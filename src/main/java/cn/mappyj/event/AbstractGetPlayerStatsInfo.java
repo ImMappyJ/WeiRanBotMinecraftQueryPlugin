@@ -51,6 +51,7 @@ public abstract class AbstractGetPlayerStatsInfo{
         PlayerReply playerReply = apiKey.getPlayerByUuid(uuid).whenComplete(theConsumer).get();
         if(isnull(playerReply.getPlayer())){CQ.sendGroupMsg(GroupID,LanguageUtil.Hypixel_InvalidName);return;}
         this.statsJson = playerReply.getPlayer().get("stats").getAsJsonObject().get(type).getAsJsonObject();
+        if(isnull(this.statsJson)){CQ.sendGroupMsg(GroupID,LanguageUtil.CantGetGameStats);return;}
         this.achievementJson = playerReply.getPlayer().get("achievements").getAsJsonObject();
         this.playerName = playerReply.getPlayer().get("displayname").getAsString();
     }
