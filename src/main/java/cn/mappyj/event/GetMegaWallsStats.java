@@ -112,7 +112,7 @@ public class GetMegaWallsStats extends AbstractGetPlayerStatsInfo{
                 .append("\n").append(nowClass).append("职业信息:").append("\n" + "技能点:").append(SkillsTree[0]).append(" ").append(SkillsTree[1]).append(" ").append(SkillsTree[2]).append(" ").append(SkillsTree[3]).append(" ").append(SkillsTree[4])
                 .append("\n").append("击杀:").append(nowKills).append("  ").append("死亡:").append(nowDeaths).append("  ").append("助攻:").append(nowAssists)
                 .append("\n").append("最终击杀:").append(nowFinalKills).append("  ").append("最终死亡:").append(nowFinalDeaths)
-                .append("\n").append("KD:").append(format.format(nowKD)).append("  ").append("Final KD:").append(format.format(nowFKD)).append("  ").append("获胜:").append(nowWin).append("局");
+                .append("\n").append("KD:").append(format.format(nowKD)).append("  ").append("Final KD:").append(format.format(nowFKD)).append("  ").append("获胜").append(nowWin).append("局");
         CQ.sendGroupMsg(GroupID,msg.toString());
     }
 }
