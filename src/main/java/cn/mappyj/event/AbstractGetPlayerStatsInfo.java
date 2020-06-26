@@ -38,6 +38,8 @@ public abstract class AbstractGetPlayerStatsInfo{
 
     protected void execute(){}
 
+    protected  void extraExecute(){}
+
     protected boolean isnull(Object o){return Objects.isNull(o); }
 
     private void getstatsJson() throws IOException, ExecutionException, InterruptedException {

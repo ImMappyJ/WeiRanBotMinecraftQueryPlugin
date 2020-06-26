@@ -68,6 +68,10 @@ public class EventExecutor extends Thread{
                             default:
                                 return false;
                         }
+                    case"mw":
+                    case"megawalls":
+                        GetMegaWallsStats getMegaWallsStats = new GetMegaWallsStats(GroupID,CQ,apiKey,theConsumer(),matcher.group(3));
+                        return true;
                     default: return false;
                 }
             case "mojang":
