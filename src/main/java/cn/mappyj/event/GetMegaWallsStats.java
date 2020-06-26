@@ -2,6 +2,7 @@ package cn.mappyj.event;
 
 import cn.mappyj.utils.LanguageUtil;
 import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import net.hypixel.api.HypixelAPI;
 import net.hypixel.api.reply.AbstractReply;
 import org.meowy.cqp.jcq.entity.CoolQ;
@@ -32,14 +33,14 @@ public class GetMegaWallsStats extends AbstractGetPlayerStatsInfo{
         String nowClass;
 
         nowClass = this.profession.toLowerCase();
-        JsonElement json_Profession = isnull(statsJson.get("classes"))?null:statsJson.get("classes").getAsJsonObject().get(nowClass);
+        JsonObject json_Profession = isnull(statsJson.get("classes"))?null:(JsonObject) statsJson.get("classes").getAsJsonObject().get(nowClass);
 
         boolean isOwned = false;
         if(nowClass.equals("shark") || nowClass.equals("cow") || nowClass.equals("hunter")){
             isOwned = true;
         }else if(!isnull(json_Profession)){
             assert json_Profession != null;
-            isOwned = !isnull(json_Profession.getAsJsonObject().get("unlocked")) && json_Profession.getAsJsonObject().get("unlocked").getAsBoolean();
+            isOwned = !isnull(json_Profession.get("unlocked")) && json_Profession.get("unlocked").getAsBoolean();
         }
 
         if(!isOwned){CQ.sendGroupMsg(GroupID,"玩家未拥有该职业"); return;}
@@ -51,11 +52,11 @@ public class GetMegaWallsStats extends AbstractGetPlayerStatsInfo{
         json_nowWin = statsJson.get(nowClass.toLowerCase()+"_wins");
         json_nowFinalDeaths = statsJson.get(nowClass.toLowerCase()+"_final_deaths");
         json_nowFinalKills = statsJson.get(nowClass.toLowerCase()+"_final_kills");
-        json_SkillsTrees[0] = statsJson.get(nowClass.toLowerCase()+"_new_a");
-        json_SkillsTrees[1] = statsJson.get(nowClass.toLowerCase()+"_new_b");
-        json_SkillsTrees[2] = statsJson.get(nowClass.toLowerCase()+"_new_c");
-        json_SkillsTrees[3] = statsJson.get(nowClass.toLowerCase()+"_new_d");
-        json_SkillsTrees[4] = statsJson.get(nowClass.toLowerCase()+"_new_g");
+        json_SkillsTrees[0] = json_Profession.get("skill_level_a");
+        json_SkillsTrees[1] = json_Profession.get("skill_level_b");
+        json_SkillsTrees[2] = json_Profession.get("skill_level_c");
+        json_SkillsTrees[3] = json_Profession.get("skill_level_d");
+        json_SkillsTrees[4] = json_Profession.get("skill_level_g");
 
         int nowDeaths,nowKills,nowAssists,nowWin,nowFinalDeaths,nowFinalKills;
         int[] SkillsTree = new int[5];
