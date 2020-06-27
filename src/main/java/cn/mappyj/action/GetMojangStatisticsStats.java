@@ -95,7 +95,7 @@ public class GetMojangStatisticsStats {
         在24小时内共售出16390份
         平均每5秒售出一份
          */
-        msg.append("Minecraft销量统计:" + "\n" + "迄今为止共售出")
+        msg.append("Minecraft JavaEdition销量统计:" + "\n" + "迄今为止共售出")
                 .append(total).append("份")
                 .append("\n").append("在24小时内共售出").append(last24h).append("份")
                 .append("\n").append("平均每").append(format.format(perGameneedSec)).append("秒售出一份");
