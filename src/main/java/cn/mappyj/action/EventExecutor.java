@@ -76,6 +76,9 @@ public class EventExecutor extends Thread{
                         if(Objects.isNull(matcher.group(4))||matcher.group(4).equals("")){GetMegaWallsStats getMegaWallsStats = new GetMegaWallsStats(GroupID,CQ,apiKey,theConsumer(),matcher.group(3));}
                         else{GetMegaWallsStats getMegaWallsStats = new GetMegaWallsStats(GroupID,CQ,apiKey,theConsumer(),matcher.group(3),matcher.group(4));}
                         return true;
+                    case"UHC":
+                        GetUHCStats getUHCStats = new GetUHCStats(GroupID,CQ,apiKey,theConsumer(),matcher.group(3));
+                        return true;
                     default: return false;
                 }
             case "mojang":
