@@ -24,7 +24,7 @@ public abstract class AbstractGet extends Thread{
         execute();
     }
 
-    protected void execute() throws IOException {}
+    protected void execute() throws IOException, ExecutionException, InterruptedException {}
 
     protected boolean isnull(Object object){return Objects.isNull(object); }
 }
