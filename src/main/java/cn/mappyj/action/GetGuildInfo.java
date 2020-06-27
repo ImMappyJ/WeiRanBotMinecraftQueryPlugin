@@ -66,13 +66,13 @@ public class GetGuildInfo extends AbstractGet{
 
         if(!isnull(member)){
             String rank = !isnull(member.getRank())?member.getRank():"Default";
-            msg.append("[Hypixel]玩家所在公会信息:")
+            msg.append("[Hypixel]玩家").append(arg).append("所在公会信息:")
                     .append("\n").append("名称:").append(theGuild.getName()).append("  ").append("Tag:").append(theGuild.getTag())
                     .append("\n").append("简介:").append(theGuild.getDescription())
                     .append("\n").append("等级:").append(theGuild.getLevel()).append("  ").append("会长:").append(masterID)
                     .append("\n").append("创建日期:").append(theGuild.getCreated().withZoneSameInstant(ZoneId.of("Asia/Shanghai")).format(formatter))
                     .append("\n").append("主攻游戏:").append("\n").append(preferredGames.toString())
-                    .append("\n").append("玩家在公会中的信息:")
+                    .append("\n").append(arg).append("在公会中的信息:")
                     .append("\n").append("Rank:").append(rank)
                     .append("\n").append("加入日期:").append(member.getJoined().withZoneSameInstant(ZoneId.of("Asia/Shanghai")).format(formatter));
         }else{

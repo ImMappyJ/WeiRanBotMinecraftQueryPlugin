@@ -23,7 +23,7 @@ public class EventExecutor extends Thread{
     public EventExecutor(long GroupID, String msg, CoolQ CQ){
         this.CQ = CQ;
         this.GroupID = GroupID;
-        this.msg = msg.toLowerCase();
+        this.msg = msg;
     }
 
     public void run(){
@@ -42,9 +42,9 @@ public class EventExecutor extends Thread{
     }
 
     private boolean commandChecker(Matcher matcher) throws InterruptedException, ExecutionException, IOException {
-        switch (matcher.group(1)){
+        switch (matcher.group(1).toLowerCase()){
             case "hyp":
-                switch (matcher.group(2)){
+                switch (matcher.group(2).toLowerCase()){
                     case "info":
                         GetPlayerInfo getPlayerInfo = new GetPlayerInfo(GroupID,CQ,apiKey,theConsumer(),matcher.group(3));
                         return true;
@@ -58,7 +58,7 @@ public class EventExecutor extends Thread{
                         return true;
                     case"arcade":
                     case"a":
-                        switch (matcher.group(3)){
+                        switch (matcher.group(3).toLowerCase()){
                             case"fh":
                             case"farmhunt":
                                 GetArcadeStats getFarmHuntStats = new GetArcadeStats(GroupID,CQ,apiKey,theConsumer(),matcher.group(4),"farmhunt");
@@ -94,7 +94,7 @@ public class EventExecutor extends Thread{
                     default: return false;
                 }
             case "mojang":
-                switch (matcher.group(2)){
+                switch (matcher.group(2).toLowerCase()){
                     case "names":
                     case "nh":
                         GetHistoryName getHistoryName = new GetHistoryName(GroupID,CQ,apiKey,theConsumer(),matcher.group(3));
