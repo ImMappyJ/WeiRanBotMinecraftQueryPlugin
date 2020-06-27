@@ -73,11 +73,23 @@ public class EventExecutor extends Thread{
                         }
                     case"mw":
                     case"megawalls":
-                        if(Objects.isNull(matcher.group(4))||matcher.group(4).equals("")){GetMegaWallsStats getMegaWallsStats = new GetMegaWallsStats(GroupID,CQ,apiKey,theConsumer(),matcher.group(3));}
+                        if(matcher.group(4).equals("")){GetMegaWallsStats getMegaWallsStats = new GetMegaWallsStats(GroupID,CQ,apiKey,theConsumer(),matcher.group(3));}
                         else{GetMegaWallsStats getMegaWallsStats = new GetMegaWallsStats(GroupID,CQ,apiKey,theConsumer(),matcher.group(3),matcher.group(4));}
                         return true;
                     case"uhc":
                         GetUHCStats getUHCStats = new GetUHCStats(GroupID,CQ,apiKey,theConsumer(),matcher.group(3));
+                        return true;
+                    case"watchdog":
+                    case"wd":
+                        GetWatchDogStatus getWatchDogStatus = new GetWatchDogStatus(GroupID,CQ,apiKey,theConsumer(),matcher.group(3));
+                        return true;
+                    case"guild":
+                    case"g":
+                        if(!matcher.group(4).equals("")){
+                            GetGuildInfo getGuildInfo = new GetGuildInfo(GroupID,CQ,apiKey,theConsumer(),matcher.group(3),matcher.group(4));
+                        }else{
+                            GetGuildInfo getGuildInfo = new GetGuildInfo(GroupID,CQ,apiKey,theConsumer(),matcher.group(3),"player");
+                        }
                         return true;
                     default: return false;
                 }
