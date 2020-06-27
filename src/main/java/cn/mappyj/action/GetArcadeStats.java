@@ -3,6 +3,7 @@ package cn.mappyj.action;
 import com.google.gson.JsonElement;
 import net.hypixel.api.HypixelAPI;
 import net.hypixel.api.reply.AbstractReply;
+import net.hypixel.api.util.GameType;
 import org.meowy.cqp.jcq.entity.CoolQ;
 
 import java.io.IOException;
@@ -13,7 +14,7 @@ import java.util.function.BiConsumer;
 public class GetArcadeStats extends AbstractGetPlayerStatsInfo{
     String type;
     protected GetArcadeStats(long GroupID, CoolQ CQ, HypixelAPI apiKey, BiConsumer<AbstractReply, Throwable> theConsumer, String arg, String type) throws InterruptedException, ExecutionException, IOException {
-        super(GroupID, CQ, apiKey, theConsumer, arg, "Arcade");
+        super(GroupID, CQ, apiKey, theConsumer, arg, GameType.ARCADE.getDbName());
         this.type = type; //miniwalls farmhunt
         extraExecute();
     }

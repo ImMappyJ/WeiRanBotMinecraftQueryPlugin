@@ -4,6 +4,7 @@ import cn.mappyj.utils.LanguageUtil;
 import com.google.gson.JsonElement;
 import net.hypixel.api.HypixelAPI;
 import net.hypixel.api.reply.AbstractReply;
+import net.hypixel.api.util.GameType;
 import org.meowy.cqp.jcq.entity.CoolQ;
 
 import java.io.IOException;
@@ -13,7 +14,7 @@ import java.util.function.BiConsumer;
 
 public class GetSkyWarsStats extends AbstractGetPlayerStatsInfo{
     protected GetSkyWarsStats(long GroupID, CoolQ CQ, HypixelAPI apiKey, BiConsumer<AbstractReply, Throwable> theConsumer, String arg) throws InterruptedException, ExecutionException, IOException {
-        super(GroupID, CQ, apiKey, theConsumer, arg, "SkyWars");
+        super(GroupID, CQ, apiKey, theConsumer, arg, GameType.SKYWARS.getDbName());
     }
 
     @Override

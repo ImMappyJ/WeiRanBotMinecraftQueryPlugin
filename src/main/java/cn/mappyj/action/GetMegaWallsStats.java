@@ -5,6 +5,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import net.hypixel.api.HypixelAPI;
 import net.hypixel.api.reply.AbstractReply;
+import net.hypixel.api.util.GameType;
 import org.meowy.cqp.jcq.entity.CoolQ;
 
 import java.io.IOException;
@@ -16,12 +17,12 @@ public class GetMegaWallsStats extends AbstractGetPlayerStatsInfo{
     String profession;
 
     protected GetMegaWallsStats(long GroupID, CoolQ CQ, HypixelAPI apiKey, BiConsumer<AbstractReply, Throwable> theConsumer, String arg) throws InterruptedException, ExecutionException, IOException {
-        super(GroupID, CQ, apiKey, theConsumer, arg, "Walls3");
+        super(GroupID, CQ, apiKey, theConsumer, arg, GameType.WALLS3.getDbName());
         commonExecute();
     }
 
     protected GetMegaWallsStats(long GroupID, CoolQ CQ, HypixelAPI apiKey, BiConsumer<AbstractReply, Throwable> theConsumer, String arg, String profession) throws InterruptedException, ExecutionException, IOException {
-        super(GroupID, CQ, apiKey, theConsumer, arg, "Walls3");
+        super(GroupID, CQ, apiKey, theConsumer, arg, GameType.WALLS3.getDbName());
         this.profession = profession;
         queryExecute();
     }

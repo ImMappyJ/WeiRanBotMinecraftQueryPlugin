@@ -4,6 +4,7 @@ import cn.mappyj.utils.LanguageUtil;
 import com.google.gson.JsonElement;
 import net.hypixel.api.HypixelAPI;
 import net.hypixel.api.reply.AbstractReply;
+import net.hypixel.api.util.GameType;
 import org.meowy.cqp.jcq.entity.CoolQ;
 import org.meowy.cqp.jcq.entity.Group;
 
@@ -15,7 +16,7 @@ import java.util.function.BiConsumer;
 public class GetUHCStats extends AbstractGetPlayerStatsInfo{
 
     protected GetUHCStats(long GroupID, CoolQ CQ, HypixelAPI apiKey, BiConsumer<AbstractReply, Throwable> theConsumer, String arg) throws InterruptedException, ExecutionException, IOException {
-        super(GroupID, CQ, apiKey, theConsumer, arg, "UHC");
+        super(GroupID, CQ, apiKey, theConsumer, arg, GameType.UHC.getDbName());
     }
 
     @Override
