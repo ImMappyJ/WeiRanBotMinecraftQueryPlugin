@@ -79,7 +79,7 @@ public class GetPlayerInfo extends AbstractGet {
                 最后登出时间：2020-6-25 11:33:28
                 当前在线
                  */
-                msg.append("[Hypixel]已查询到玩家").append(PlayerName).append("的信息:\n").append("大厅等级:").append(Level).append(" ").append("人品值:").append(Karma).append("\n").append("头衔:").append(Rank).append(" ").append("成就点数:").append(AchievementPoints).append("\n").append("最近游戏类型:").append(RecentGameType).append("\n").append("使用语言:").append(Language).append("\n").append("客户端版本:").append(Version).append("\n").append("最后登出时间").append(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date(LastLogout))).append("\n").append("当前").append(isOnline);
+                msg.append("[Hypixel]已查询到玩家").append(PlayerName).append("的信息:\n").append("大厅等级:").append(Level).append(" ").append("人品值:").append(Karma).append("\n").append("头衔:").append(Rank).append(" ").append("成就点数:").append(AchievementPoints).append("\n").append("最近游戏类型:").append(RecentGameType).append("\n").append("使用语言:").append(Language).append("\n").append("客户端版本:").append(Version).append("\n").append("最后登出时间:").append(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date(LastLogout))).append("\n").append("当前").append(isOnline);
                 CQ.sendGroupMsg(GroupID,msg.toString());
                 return;
             }

@@ -60,11 +60,11 @@ public class GetUHCStats extends AbstractGetPlayerStatsInfo{
          */
         msg.append("[Hypixel]已查询到").append(playerName).append("的UHC信息:")
                 .append("\n").append("积分:").append(Scores).append("  ").append("硬币:").append(Coins)
-                .append("\n").append("击杀:").append(Kills).append("  ").append("死亡:").append(Deaths).append("  ").append("KD:").append(KD)
+                .append("\n").append("击杀:").append(Kills).append("  ").append("死亡:").append(Deaths).append("  ").append("KD:").append(format.format(KD))
                 .append("\n").append("个人模式:")
-                .append("\n").append("击杀:").append(SoloKills).append("  ").append("死亡:").append(SoloDeaths).append("  ").append("KD:").append(SoloKD)
+                .append("\n").append("击杀:").append(SoloKills).append("  ").append("死亡:").append(SoloDeaths).append("  ").append("KD:").append(format.format(SoloKD))
                 .append("\n").append("组队模式:")
-                .append("\n").append("击杀:").append(TeamKills).append("  ").append("死亡:").append(TeamDeaths).append("  ").append("KD:").append(TeamKD);
+                .append("\n").append("击杀:").append(TeamKills).append("  ").append("死亡:").append(TeamDeaths).append("  ").append("KD:").append(format.format(TeamKD));
         CQ.sendGroupMsg(GroupID,msg.toString());
     }
 }

@@ -23,7 +23,7 @@ public class EventExecutor extends Thread{
     public EventExecutor(long GroupID, String msg, CoolQ CQ){
         this.CQ = CQ;
         this.GroupID = GroupID;
-        this.msg = msg;
+        this.msg = msg.toLowerCase();
     }
 
     public void run(){
@@ -76,7 +76,7 @@ public class EventExecutor extends Thread{
                         if(Objects.isNull(matcher.group(4))||matcher.group(4).equals("")){GetMegaWallsStats getMegaWallsStats = new GetMegaWallsStats(GroupID,CQ,apiKey,theConsumer(),matcher.group(3));}
                         else{GetMegaWallsStats getMegaWallsStats = new GetMegaWallsStats(GroupID,CQ,apiKey,theConsumer(),matcher.group(3),matcher.group(4));}
                         return true;
-                    case"UHC":
+                    case"uhc":
                         GetUHCStats getUHCStats = new GetUHCStats(GroupID,CQ,apiKey,theConsumer(),matcher.group(3));
                         return true;
                     default: return false;
