@@ -7,7 +7,7 @@ import java.net.ProtocolException;
 public class HttpGetTextUtil {
     public String getURLText(HttpURLConnection conn) throws IOException {
         conn.setRequestMethod("GET");
-        conn.setUseCaches(false);
+        conn.setUseCaches(true);
         conn.setConnectTimeout(10000);
         conn.addRequestProperty("Accept","*/*");
         conn.addRequestProperty("Connection","keep-alive");

@@ -84,6 +84,14 @@ public class EventExecutor extends Thread{
                     case "nh":
                         GetHistoryName getHistoryName = new GetHistoryName(GroupID,CQ,apiKey,theConsumer(),matcher.group(3));
                         return true;
+                    case "minecraft":
+                    case "mc":
+                        GetMojangStatisticsStats getMinecraftStatisticsStats = new GetMojangStatisticsStats(CQ,GroupID,"minecraft");
+                        return true;
+                    case "minecraft_dungeon":
+                    case "dungeon":
+                        GetMojangStatisticsStats getDungeonStatisticsStats = new GetMojangStatisticsStats(CQ,GroupID,"minecraft_dungeon");
+                        return true;
                     default:return false;
                 }
             default:return false;

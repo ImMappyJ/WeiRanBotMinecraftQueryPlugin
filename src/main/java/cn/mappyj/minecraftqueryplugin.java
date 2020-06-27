@@ -66,7 +66,7 @@ public class minecraftqueryplugin extends JcqAppAbstract implements ICQVer, IAut
         executeCmd.start();
         try {
             executeCmd.join();
-        } catch (InterruptedException e) {
+        } catch (Exception e) {
             CQ.sendGroupMsg(fromGroup,LanguageUtil.CatchException);
             CQ.logInfo("",e);
         }
