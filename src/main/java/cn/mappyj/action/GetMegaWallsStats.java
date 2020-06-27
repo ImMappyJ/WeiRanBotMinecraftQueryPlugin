@@ -16,13 +16,13 @@ import java.util.function.BiConsumer;
 public class GetMegaWallsStats extends AbstractGetPlayerStatsInfo{
     String profession;
 
-    protected GetMegaWallsStats(long GroupID, CoolQ CQ, HypixelAPI apiKey, BiConsumer<AbstractReply, Throwable> theConsumer, String arg) throws InterruptedException, ExecutionException, IOException {
-        super(GroupID, CQ, apiKey, theConsumer, arg, GameType.WALLS3.getDbName());
+    protected GetMegaWallsStats(long GroupID, CoolQ CQ, HypixelAPI apiKey, String arg) throws InterruptedException, ExecutionException, IOException {
+        super(GroupID, CQ, apiKey, arg, GameType.WALLS3.getDbName());
         commonExecute();
     }
 
-    protected GetMegaWallsStats(long GroupID, CoolQ CQ, HypixelAPI apiKey, BiConsumer<AbstractReply, Throwable> theConsumer, String arg, String profession) throws InterruptedException, ExecutionException, IOException {
-        super(GroupID, CQ, apiKey, theConsumer, arg, GameType.WALLS3.getDbName());
+    protected GetMegaWallsStats(long GroupID, CoolQ CQ, HypixelAPI apiKey, String arg, String profession) throws InterruptedException, ExecutionException, IOException {
+        super(GroupID, CQ, apiKey, arg, GameType.WALLS3.getDbName());
         this.profession = profession;
         queryExecute();
     }

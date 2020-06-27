@@ -14,11 +14,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class EventExecutor extends Thread{
-    private BiConsumer<AbstractReply,Throwable> consumer = theConsumer();
-    private HypixelAPI apiKey = new HypixelAPI(UUID.fromString("ad8231a5-ee7a-4aad-a83a-486dd3468fbf"));
-    private CoolQ CQ;
-    private String msg;
-    private long GroupID;
+    private final HypixelAPI apiKey = new HypixelAPI(UUID.fromString("ad8231a5-ee7a-4aad-a83a-486dd3468fbf"));
+    private final CoolQ CQ;
+    private final String msg;
+    private final long GroupID;
 
     public EventExecutor(long GroupID, String msg, CoolQ CQ){
         this.CQ = CQ;
@@ -46,53 +45,53 @@ public class EventExecutor extends Thread{
             case "hyp":
                 switch (matcher.group(2).toLowerCase()){
                     case "info":
-                        GetPlayerInfo getPlayerInfo = new GetPlayerInfo(GroupID,CQ,apiKey,theConsumer(),matcher.group(3));
+                        GetPlayerInfo getPlayerInfo = new GetPlayerInfo(GroupID,CQ,apiKey,matcher.group(3));
                         return true;
                     case"bedwars":
                     case "bw":
-                        GetBedWarsStats getBedWarsStats = new GetBedWarsStats(GroupID,CQ,apiKey,theConsumer(),matcher.group(3));
+                        GetBedWarsStats getBedWarsStats = new GetBedWarsStats(GroupID,CQ,apiKey,matcher.group(3));
                         return true;
                     case"skywars":
                     case "sw":
-                        GetSkyWarsStats getSkyWarsStats = new GetSkyWarsStats(GroupID,CQ,apiKey,theConsumer(),matcher.group(3));
+                        GetSkyWarsStats getSkyWarsStats = new GetSkyWarsStats(GroupID,CQ,apiKey,matcher.group(3));
                         return true;
                     case"arcade":
                     case"a":
                         switch (matcher.group(3).toLowerCase()){
                             case"fh":
                             case"farmhunt":
-                                GetArcadeStats getFarmHuntStats = new GetArcadeStats(GroupID,CQ,apiKey,theConsumer(),matcher.group(4),"farmhunt");
+                                GetArcadeStats getFarmHuntStats = new GetArcadeStats(GroupID,CQ,apiKey,matcher.group(4),"farmhunt");
                                 return true;
                             case"mw":
                             case"miniwalls":
-                                GetArcadeStats getMiniWallsStats = new GetArcadeStats(GroupID,CQ,apiKey,theConsumer(),matcher.group(4),"miniwalls");
+                                GetArcadeStats getMiniWallsStats = new GetArcadeStats(GroupID,CQ,apiKey,matcher.group(4),"miniwalls");
                                 return true;
                             case"simonsays":
                             case"hypsays":
-                                GetArcadeStats getSimonSaysStats = new GetArcadeStats(GroupID,CQ,apiKey,theConsumer(),matcher.group(4),"simonsays");
+                                GetArcadeStats getSimonSaysStats = new GetArcadeStats(GroupID,CQ,apiKey,matcher.group(4),"simonsays");
                                 return true;
                             default:
-                                GetArcadeStats getArcadeStats = new GetArcadeStats(GroupID,CQ,apiKey,theConsumer(),matcher.group(4),"");
+                                GetArcadeStats getArcadeStats = new GetArcadeStats(GroupID,CQ,apiKey,matcher.group(4),"");
                                 return true;
                         }
                     case"mw":
                     case"megawalls":
-                        if(matcher.group(4).equals("")){GetMegaWallsStats getMegaWallsStats = new GetMegaWallsStats(GroupID,CQ,apiKey,theConsumer(),matcher.group(3));}
-                        else{GetMegaWallsStats getMegaWallsStats = new GetMegaWallsStats(GroupID,CQ,apiKey,theConsumer(),matcher.group(3),matcher.group(4));}
+                        if(matcher.group(4).equals("")){GetMegaWallsStats getMegaWallsStats = new GetMegaWallsStats(GroupID,CQ,apiKey,matcher.group(3));}
+                        else{GetMegaWallsStats getMegaWallsStats = new GetMegaWallsStats(GroupID,CQ,apiKey,matcher.group(3),matcher.group(4));}
                         return true;
                     case"uhc":
-                        GetUHCStats getUHCStats = new GetUHCStats(GroupID,CQ,apiKey,theConsumer(),matcher.group(3));
+                        GetUHCStats getUHCStats = new GetUHCStats(GroupID,CQ,apiKey,matcher.group(3));
                         return true;
                     case"watchdog":
                     case"wd":
-                        GetWatchDogStatus getWatchDogStatus = new GetWatchDogStatus(GroupID,CQ,apiKey,theConsumer(),matcher.group(3));
+                        GetWatchDogStatus getWatchDogStatus = new GetWatchDogStatus(GroupID,CQ,apiKey,matcher.group(3));
                         return true;
                     case"guild":
                     case"g":
                         if(!matcher.group(4).equals("")){
-                            GetGuildInfo getGuildInfo = new GetGuildInfo(GroupID,CQ,apiKey,theConsumer(),matcher.group(3),matcher.group(4));
+                            GetGuildInfo getGuildInfo = new GetGuildInfo(GroupID,CQ,apiKey,matcher.group(3),matcher.group(4));
                         }else{
-                            GetGuildInfo getGuildInfo = new GetGuildInfo(GroupID,CQ,apiKey,theConsumer(),matcher.group(3),"player");
+                            GetGuildInfo getGuildInfo = new GetGuildInfo(GroupID,CQ,apiKey,matcher.group(3),"player");
                         }
                         return true;
                     default: return false;
@@ -101,7 +100,7 @@ public class EventExecutor extends Thread{
                 switch (matcher.group(2).toLowerCase()){
                     case "names":
                     case "nh":
-                        GetHistoryName getHistoryName = new GetHistoryName(GroupID,CQ,apiKey,theConsumer(),matcher.group(3));
+                        GetHistoryName getHistoryName = new GetHistoryName(GroupID,CQ,apiKey,matcher.group(3));
                         return true;
                     case "minecraft":
                     case "mc":
@@ -115,14 +114,5 @@ public class EventExecutor extends Thread{
                 }
             default:return false;
         }
-    }
-
-    private <T extends AbstractReply> BiConsumer <T,Throwable> theConsumer(){
-        return(result,throwable)->{
-            if(throwable != null){
-                throwable.printStackTrace();
-                return;
-            }
-        };
     }
 }

@@ -13,13 +13,11 @@ public abstract class AbstractGet extends Thread{
     CoolQ CQ;
     long GroupID;
     HypixelAPI apiKey;
-    BiConsumer<AbstractReply,Throwable> theConsumer;
     String arg;
-    protected AbstractGet(long GroupID, CoolQ CQ, HypixelAPI apiKey, BiConsumer<AbstractReply, Throwable> theConsumer,String arg) throws InterruptedException, ExecutionException, IOException {
+    protected AbstractGet(long GroupID, CoolQ CQ, HypixelAPI apiKey,String arg) throws InterruptedException, ExecutionException, IOException {
         this.CQ = CQ;
         this.GroupID = GroupID;
         this.apiKey= apiKey;
-        this.theConsumer = theConsumer;
         this.arg = arg;
         execute();
     }

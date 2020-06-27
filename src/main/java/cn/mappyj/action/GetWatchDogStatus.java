@@ -11,13 +11,13 @@ import java.util.concurrent.ExecutionException;
 import java.util.function.BiConsumer;
 
 public class GetWatchDogStatus extends AbstractGet{
-    protected GetWatchDogStatus(long GroupID, CoolQ CQ, HypixelAPI apiKey, BiConsumer<AbstractReply, Throwable> theConsumer, String arg) throws InterruptedException, ExecutionException, IOException {
-        super(GroupID, CQ, apiKey, theConsumer, arg);
+    protected GetWatchDogStatus(long GroupID, CoolQ CQ, HypixelAPI apiKey, String arg) throws InterruptedException, ExecutionException, IOException {
+        super(GroupID, CQ, apiKey, arg);
     }
 
     @Override
     protected void execute() throws IOException, ExecutionException, InterruptedException {
-        WatchdogStatsReply watchdog =  apiKey.getWatchdogStats().whenComplete(theConsumer).get();
+        WatchdogStatsReply watchdog =  apiKey.getWatchdogStats().get();
         if(!watchdog.isSuccess()){
             CQ.sendGroupMsg(GroupID, LanguageUtil.CatchException);
             return;

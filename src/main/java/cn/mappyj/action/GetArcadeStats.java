@@ -13,8 +13,8 @@ import java.util.function.BiConsumer;
 
 public class GetArcadeStats extends AbstractGetPlayerStatsInfo{
     String type;
-    protected GetArcadeStats(long GroupID, CoolQ CQ, HypixelAPI apiKey, BiConsumer<AbstractReply, Throwable> theConsumer, String arg, String type) throws InterruptedException, ExecutionException, IOException {
-        super(GroupID, CQ, apiKey, theConsumer, arg, GameType.ARCADE.getDbName());
+    protected GetArcadeStats(long GroupID, CoolQ CQ, HypixelAPI apiKey, String arg, String type) throws InterruptedException, ExecutionException, IOException {
+        super(GroupID, CQ, apiKey, arg, GameType.ARCADE.getDbName());
         this.type = type; //miniwalls farmhunt
         extraExecute();
     }

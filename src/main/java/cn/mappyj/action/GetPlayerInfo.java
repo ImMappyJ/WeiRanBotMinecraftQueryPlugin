@@ -18,8 +18,8 @@ import java.util.concurrent.ExecutionException;
 import java.util.function.BiConsumer;
 
 public class GetPlayerInfo extends AbstractGet {
-    protected GetPlayerInfo(long GroupID, CoolQ CQ, HypixelAPI apiKey, BiConsumer<AbstractReply, Throwable> theConsumer,String arg) throws InterruptedException, ExecutionException, IOException {
-        super(GroupID,CQ,apiKey,theConsumer,arg);
+    protected GetPlayerInfo(long GroupID, CoolQ CQ, HypixelAPI apiKey,String arg) throws InterruptedException, ExecutionException, IOException {
+        super(GroupID,CQ,apiKey,arg);
     }
 
     @Override
@@ -32,7 +32,7 @@ public class GetPlayerInfo extends AbstractGet {
                 CQ.sendGroupMsg(GroupID, LanguageUtil.Mojang_InvalidName);
                 return;
             }
-            PlayerReply player = apiKey.getPlayerByUuid(uuid).whenComplete(theConsumer).get();
+            PlayerReply player = apiKey.getPlayerByUuid(uuid).get();
             if(player.isSuccess()){
                 JsonObject getPlayerJsonObject = player.getPlayer();
                 if(isnull(getPlayerJsonObject)){

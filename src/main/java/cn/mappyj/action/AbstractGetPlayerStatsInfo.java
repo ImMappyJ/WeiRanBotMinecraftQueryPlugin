@@ -23,14 +23,12 @@ public abstract class AbstractGetPlayerStatsInfo{
     CoolQ CQ;
     long GroupID;
     HypixelAPI apiKey;
-    BiConsumer<AbstractReply,Throwable> theConsumer;
     String arg;
-    protected AbstractGetPlayerStatsInfo(long GroupID, CoolQ CQ, HypixelAPI apiKey, BiConsumer<AbstractReply, Throwable> theConsumer, String arg,String type) throws InterruptedException, ExecutionException, IOException {
+    protected AbstractGetPlayerStatsInfo(long GroupID, CoolQ CQ, HypixelAPI apiKey, String arg,String type) throws InterruptedException, ExecutionException, IOException {
         this.type = type;
         this.GroupID = GroupID;
         this.CQ = CQ;
         this.apiKey = apiKey;
-        this.theConsumer = theConsumer;
         this.arg = arg;
         getstatsJson();
         execute();
@@ -50,7 +48,7 @@ public abstract class AbstractGetPlayerStatsInfo{
             CQ.sendGroupMsg(GroupID, LanguageUtil.Mojang_InvalidName);
             return;
         }
-        PlayerReply playerReply = apiKey.getPlayerByUuid(uuid).whenComplete(theConsumer).get();
+        PlayerReply playerReply = apiKey.getPlayerByUuid(uuid).get();
         if(isnull(playerReply.getPlayer())){CQ.sendGroupMsg(GroupID,LanguageUtil.Hypixel_InvalidName);return;}
         this.statsJson = playerReply.getPlayer().get("stats").getAsJsonObject().get(type).getAsJsonObject();
         if(isnull(this.statsJson)){CQ.sendGroupMsg(GroupID,LanguageUtil.CantGetGameStats);return;}

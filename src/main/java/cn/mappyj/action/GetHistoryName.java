@@ -11,8 +11,8 @@ import java.util.concurrent.ExecutionException;
 import java.util.function.BiConsumer;
 
 public class GetHistoryName extends AbstractGet{
-    protected GetHistoryName(long GroupID, CoolQ CQ, HypixelAPI apiKey, BiConsumer<AbstractReply, Throwable> theConsumer, String arg) throws InterruptedException, ExecutionException, IOException {
-        super(GroupID, CQ, apiKey, theConsumer, arg);
+    protected GetHistoryName(long GroupID, CoolQ CQ, HypixelAPI apiKey, String arg) throws InterruptedException, ExecutionException, IOException {
+        super(GroupID, CQ, apiKey, arg);
     }
 
     @Override

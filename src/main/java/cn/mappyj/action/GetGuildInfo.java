@@ -18,8 +18,8 @@ import java.util.function.BiConsumer;
 
 public class GetGuildInfo extends AbstractGet{
     String type;
-    protected GetGuildInfo(long GroupID, CoolQ CQ, HypixelAPI apiKey, BiConsumer<AbstractReply, Throwable> theConsumer, String arg,String type) throws InterruptedException, ExecutionException, IOException {
-        super(GroupID, CQ, apiKey, theConsumer, arg);
+    protected GetGuildInfo(long GroupID, CoolQ CQ, HypixelAPI apiKey, String arg,String type) throws InterruptedException, ExecutionException, IOException {
+        super(GroupID, CQ, apiKey, arg);
         this.type = type.toLowerCase();
         getGuildInfo();
     }
@@ -34,7 +34,7 @@ public class GetGuildInfo extends AbstractGet{
                 String stringuuid = castUtil.nametoStringUUID(arg);
                 if(isnull(stringuuid)){CQ.sendGroupMsg(GroupID,LanguageUtil.Mojang_InvalidName);return;}
                 UUID uuid =processUtil.stringUUIDToUUID(stringuuid);
-                guildReply = apiKey.getGuildByPlayer(uuid).whenComplete(theConsumer).get();
+                guildReply = apiKey.getGuildByPlayer(uuid).get();
                 if(isnull(guildReply.getGuild())){CQ.sendGroupMsg(GroupID,LanguageUtil.GuildNotFound);return;}
                 boolean isMasterFound = false,isMemberFound = false;
                 for(GuildReply.Guild.Member temp_Member:guildReply.getGuild().getMembers()){
@@ -44,7 +44,7 @@ public class GetGuildInfo extends AbstractGet{
                 }
                 break;
             case"name":
-                guildReply = apiKey.getGuildByName(arg).whenComplete(theConsumer).get();
+                guildReply = apiKey.getGuildByName(arg).get();
                 if(isnull(guildReply.getGuild())){CQ.sendGroupMsg(GroupID,LanguageUtil.GuildNotFound);return;}
                 for(GuildReply.Guild.Member temp_Member:guildReply.getGuild().getMembers()){
                     if(temp_Member.getRank().toLowerCase().equals("guild master")){master = temp_Member;break;}
