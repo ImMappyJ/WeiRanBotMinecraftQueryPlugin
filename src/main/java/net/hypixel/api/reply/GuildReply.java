@@ -32,6 +32,7 @@ public class GuildReply extends AbstractReply {
         private int coinsEver;
         private ZonedDateTime created;
         private Boolean joinable;
+        private List<String> preferredGames;
         private long exp;
         private int legacyRanking;
 
@@ -71,6 +72,10 @@ public class GuildReply extends AbstractReply {
 
         public String getName() {
             return name;
+        }
+
+        public List<String> getPreferredGames(){
+            return preferredGames;
         }
 
         public String getDescription() {
