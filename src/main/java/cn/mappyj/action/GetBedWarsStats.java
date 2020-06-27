@@ -65,7 +65,7 @@ public class GetBedWarsStats extends AbstractGetPlayerStatsInfo{
         总死亡数:** 最终死亡:**
         获取资源数:****  获取宝箱数:***
          */
-        msg.append("[Hypixel]玩家").append(playerName).append("的起床信息:\n")
+        msg.append("[Hypixel]玩家").append(playerName).append("的起床战绩:\n")
                 .append("等级:").append(Level).append("☆").append("  ").append("硬币:").append(Coins).append("枚")
                 .append("\n").append("摧毁床数:").append(BreakBedCounts).append("  ").append("B/L:").append(formatter.format(Bed_BL))
                 .append("\n").append("总击杀数:").append(CommonKillCounts).append("  ").append("K/D:").append(formatter.format(Common_KD))

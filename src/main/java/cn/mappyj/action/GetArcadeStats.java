@@ -48,7 +48,7 @@ public class GetArcadeStats extends AbstractGetPlayerStatsInfo{
                 硬币:22222  击杀凋零:1
                 击杀:2  死亡:3  KD:2/3
                  */
-                msg.append("[Hypixel]已查询到").append(playerName).append("的街机信息:")
+                msg.append("[Hypixel]已查询到").append(playerName).append("的迷你战墙战绩:")
                         .append("\n").append("击杀凋零:").append(KillWitherCounts).append("  ").append("最终击杀:").append(FinalKills)
                         .append("\n").append("击杀:").append(Kills).append("  ").append("死亡:").append(Deaths).append("  ").append("KD:").append(format.format(KD));
 
@@ -68,9 +68,26 @@ public class GetArcadeStats extends AbstractGetPlayerStatsInfo{
                 硬币:22222  收集粑粑1个
                 共获胜**局
                  */
-                msg.append("[Hypixel]已查询到").append(playerName).append("的街机信息:")
-                        .append("\n").append("收集粑粑").append(PoopCollect).append("个").append(Coins).append("  ").append("共获胜").append(Win).append("局");
+                msg.append("[Hypixel]已查询到").append(playerName).append("的躲猫猫战绩:")
+                        .append("\n").append("收集粑粑:").append(PoopCollect).append("  ").append("胜利:").append(Win);
 
+                CQ.sendGroupMsg(GroupID,msg.toString());
+                return;
+            case"simonsays":
+                JsonElement json_SimonRounds,json_SimonWin;
+                json_SimonRounds = statsJson.get("rounds_simon_says");
+                json_SimonWin = statsJson.get("wins_simon_says");
+
+                int SimonRounds,SimonWin;
+
+                SimonRounds = isnull(json_SimonRounds)?0:json_SimonRounds.getAsInt();
+                SimonWin = isnull(json_SimonWin)?0:json_SimonWin.getAsInt();
+                /*
+                [Hypixel]已查询到Player的街机信息:
+                你说我做共进行133局  共上榜16次
+                 */
+                msg.append("[Hypixel]已查询到").append(playerName).append("的我说你做战绩:")
+                        .append("\n").append("局数:").append(SimonRounds).append("  ").append("榜一次数:").append(SimonWin);
                 CQ.sendGroupMsg(GroupID,msg.toString());
                 return;
             default:

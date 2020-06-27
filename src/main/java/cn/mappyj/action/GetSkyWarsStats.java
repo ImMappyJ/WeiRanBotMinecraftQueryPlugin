@@ -53,7 +53,7 @@ public class GetSkyWarsStats extends AbstractGetPlayerStatsInfo{
         最近匹配模式:TEAM
         共收割8个灵魂  现拥有9个灵魂
          */
-        msg.append("[Hypixel]已查询到").append(playerName).append("的空战信息:\n")
+        msg.append("[Hypixel]已查询到").append(playerName).append("的空战战绩:\n")
                 .append("等级:").append(Level).append("  ").append("金币:").append(Coins).append("  ").append("助攻:").append(Assists)
                 .append("\n").append("击杀:").append(Kills).append("  ").append("死亡:").append(Deaths).append("  ").append("KD:").append(format.format(KD))
                 .append("\n").append("最近匹配模式:").append(LastMode)

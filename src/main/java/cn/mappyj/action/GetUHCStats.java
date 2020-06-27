@@ -59,7 +59,7 @@ public class GetUHCStats extends AbstractGetPlayerStatsInfo{
         组队模式:
         击杀:2  死亡:2  KD:1
          */
-        msg.append("[Hypixel]已查询到").append(playerName).append("的UHC信息:")
+        msg.append("[Hypixel]已查询到").append(playerName).append("的UHC战绩:")
                 .append("\n").append("积分:").append(Scores).append("  ").append("硬币:").append(Coins)
                 .append("\n").append("击杀:").append(Kills).append("  ").append("死亡:").append(Deaths).append("  ").append("KD:").append(format.format(KD))
                 .append("\n").append("个人模式:")

@@ -67,6 +67,10 @@ public class EventExecutor extends Thread{
                             case"miniwalls":
                                 GetArcadeStats getMiniWallsStats = new GetArcadeStats(GroupID,CQ,apiKey,theConsumer(),matcher.group(4),"miniwalls");
                                 return true;
+                            case"simonsays":
+                            case"hypsays":
+                                GetArcadeStats getSimonSaysStats = new GetArcadeStats(GroupID,CQ,apiKey,theConsumer(),matcher.group(4),"simonsays");
+                                return true;
                             default:
                                 GetArcadeStats getArcadeStats = new GetArcadeStats(GroupID,CQ,apiKey,theConsumer(),matcher.group(4),"");
                                 return true;

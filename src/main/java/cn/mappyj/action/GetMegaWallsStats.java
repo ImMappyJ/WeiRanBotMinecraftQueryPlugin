@@ -92,7 +92,7 @@ public class GetMegaWallsStats extends AbstractGetPlayerStatsInfo{
         最终击杀:222 最终死亡:222
         KD:1 Final KD:1  获胜22局
          */
-        msg.append("[Hypixel]玩家").append(playerName).append("的超战信息:")
+        msg.append("[Hypixel]玩家").append(playerName).append("的超战战绩:")
                 .append("\n").append("职业:").append(String.valueOf(profession.charAt(0)).toUpperCase()).append(profession.substring(1))
                 .append("\n").append("技能点:").append(SkillsTree[0]).append(" ").append(SkillsTree[1]).append(" ").append(SkillsTree[2]).append(" ").append(SkillsTree[3]).append(" ").append(SkillsTree[4])
                 .append("\n").append("击杀:").append(nowKills).append("  ").append("死亡:").append(nowDeaths).append("  ").append("助攻:").append(nowAssists)
@@ -178,7 +178,7 @@ public class GetMegaWallsStats extends AbstractGetPlayerStatsInfo{
         最终击杀:222 最终死亡:222
         KD:1 Final KD:1  获胜22局
          */
-        msg.append("[Hypixel]玩家").append(playerName).append("的超战信息:")
+        msg.append("[Hypixel]玩家").append(playerName).append("的超战战绩:")
                 .append("\n").append("硬币:").append(Coins).append("  ").append("助攻:").append(totalAssists)
                 .append("\n").append("总击杀:").append(totalKills).append("  ").append("总死亡:").append(totalDeaths)
                 .append("\n").append("最终击杀:").append(totalFinalKills).append("  ").append("最终死亡:").append(totalFinalDeaths)
