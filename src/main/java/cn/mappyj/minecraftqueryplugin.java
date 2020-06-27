@@ -44,7 +44,9 @@ public class minecraftqueryplugin extends JcqAppAbstract implements ICQVer, IAut
 
     public int enable() {
         try {
-            LanguageUtil.propload(appDirectory+File.separator+"language.properties");
+            if(!LanguageUtil.propload(appDirectory+File.separator+"language.properties")){
+
+            };
         } catch (IOException | InterruptedException e) {
             CQ.logInfo("啊咧 创建文件时出错了",e);
         }
