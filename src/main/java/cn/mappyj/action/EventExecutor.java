@@ -1,4 +1,4 @@
-package cn.mappyj.event;
+package cn.mappyj.action;
 
 import cn.mappyj.utils.LanguageUtil;
 import net.hypixel.api.HypixelAPI;

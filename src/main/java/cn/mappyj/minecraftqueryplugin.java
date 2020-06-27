@@ -1,7 +1,7 @@
 package cn.mappyj;
 
 
-import cn.mappyj.event.EventExecutor;
+import cn.mappyj.action.EventExecutor;
 import cn.mappyj.utils.LanguageUtil;
 import org.meowy.cqp.jcq.entity.CoolQ;
 import org.meowy.cqp.jcq.entity.IAuth;
@@ -11,7 +11,6 @@ import org.meowy.cqp.jcq.event.JcqAppAbstract;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.concurrent.ExecutionException;
 
 public class minecraftqueryplugin extends JcqAppAbstract implements ICQVer, IAuth, IRequest {
     public minecraftqueryplugin(){ }

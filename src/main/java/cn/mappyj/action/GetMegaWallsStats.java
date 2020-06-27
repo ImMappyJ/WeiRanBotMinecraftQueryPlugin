@@ -1,4 +1,4 @@
-package cn.mappyj.event;
+package cn.mappyj.action;
 
 import cn.mappyj.utils.LanguageUtil;
 import com.google.gson.JsonElement;
@@ -30,9 +30,8 @@ public class GetMegaWallsStats extends AbstractGetPlayerStatsInfo{
         if(isnull(statsJson) || isnull(achievementJson)) return;
         JsonElement json_nowKills,json_nowDeaths,json_nowAssists,json_nowWin,json_nowFinalKills,json_nowFinalDeaths;
         JsonElement[] json_SkillsTrees = new JsonElement[5];
-        String nowClass;
+        String nowClass = this.profession.toLowerCase();
 
-        nowClass = this.profession.toLowerCase();
         JsonObject json_Profession = isnull(statsJson.get("classes"))?null:(JsonObject) statsJson.get("classes").getAsJsonObject().get(nowClass);
 
         boolean isOwned = false;
@@ -46,17 +45,17 @@ public class GetMegaWallsStats extends AbstractGetPlayerStatsInfo{
         if(!isOwned){CQ.sendGroupMsg(GroupID,"玩家未拥有该职业"); return;}
 
         StringBuilder msg = new StringBuilder();
-        json_nowDeaths = statsJson.get(nowClass.toLowerCase()+"_total_deaths");
-        json_nowKills = statsJson.get(nowClass.toLowerCase()+"_total_kills");
-        json_nowAssists = statsJson.get(nowClass.toLowerCase()+"_assists");
-        json_nowWin = statsJson.get(nowClass.toLowerCase()+"_wins");
-        json_nowFinalDeaths = statsJson.get(nowClass.toLowerCase()+"_final_deaths");
-        json_nowFinalKills = statsJson.get(nowClass.toLowerCase()+"_final_kills");
-        json_SkillsTrees[0] = json_Profession.get("skill_level_a");
-        json_SkillsTrees[1] = json_Profession.get("skill_level_b");
-        json_SkillsTrees[2] = json_Profession.get("skill_level_c");
-        json_SkillsTrees[3] = json_Profession.get("skill_level_d");
-        json_SkillsTrees[4] = json_Profession.get("skill_level_g");
+        json_nowDeaths = statsJson.get(nowClass+"_total_deaths");
+        json_nowKills = statsJson.get(nowClass+"_total_kills");
+        json_nowAssists = statsJson.get(nowClass+"_assists");
+        json_nowWin = statsJson.get(nowClass+"_wins");
+        json_nowFinalDeaths = statsJson.get(nowClass+"_final_deaths");
+        json_nowFinalKills = statsJson.get(nowClass+"_final_kills");
+        json_SkillsTrees[0] = isnull(json_Profession)?statsJson.get(nowClass+"_new_a"):json_Profession.get("skill_level_a");
+        json_SkillsTrees[1] = isnull(json_Profession)?statsJson.get(nowClass+"_new_b"):json_Profession.get("skill_level_b");
+        json_SkillsTrees[2] = isnull(json_Profession)?statsJson.get(nowClass+"_new_c"):json_Profession.get("skill_level_c");
+        json_SkillsTrees[3] = isnull(json_Profession)?statsJson.get(nowClass+"_new_d"):json_Profession.get("skill_level_d");
+        json_SkillsTrees[4] = isnull(json_Profession)?statsJson.get(nowClass+"_new_g"):json_Profession.get("skill_level_g");
 
         int nowDeaths,nowKills,nowAssists,nowWin,nowFinalDeaths,nowFinalKills;
         int[] SkillsTree = new int[5];

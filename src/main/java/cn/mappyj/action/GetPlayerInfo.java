@@ -1,4 +1,4 @@
-package cn.mappyj.event;
+package cn.mappyj.action;
 
 import cn.mappyj.utils.CharProcessUtil;
 import cn.mappyj.utils.MojangCastUtil;

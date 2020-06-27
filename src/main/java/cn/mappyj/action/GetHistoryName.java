@@ -1,4 +1,4 @@
-package cn.mappyj.event;
+package cn.mappyj.action;
 
 import cn.mappyj.utils.LanguageUtil;
 import cn.mappyj.utils.MojangCastUtil;
@@ -7,7 +7,6 @@ import net.hypixel.api.reply.AbstractReply;
 import org.meowy.cqp.jcq.entity.CoolQ;
 
 import java.io.IOException;
-import java.util.Objects;
 import java.util.concurrent.ExecutionException;
 import java.util.function.BiConsumer;
 

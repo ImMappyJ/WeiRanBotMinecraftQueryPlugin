@@ -1,6 +1,5 @@
-package cn.mappyj.event;
+package cn.mappyj.action;
 
-import cn.mappyj.utils.LanguageUtil;
 import com.google.gson.JsonElement;
 import net.hypixel.api.HypixelAPI;
 import net.hypixel.api.reply.AbstractReply;
