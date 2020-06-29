@@ -6,7 +6,7 @@ import java.util.Properties;
 public class LanguageUtil {
     public static File languageFile = null;
     public static String Hypixel_InvalidName,Mojang_InvalidName,Hypixel_InvalidKey,CatchException,Wrong_Command,NoPermission,Unknown
-            ,CantGetGameStats,GuildNotFound= "";
+            ,CantGetGameStats,GuildNotFound, PleaseKeyInteger = "";
 
     public static boolean propload(String path) throws IOException, InterruptedException {
         Properties languageProp = new Properties();
@@ -22,6 +22,7 @@ public class LanguageUtil {
             Unknown = languageProp.getProperty("Unknown","未知");
             CantGetGameStats = languageProp.getProperty("CantGetGameStats","无法获取该玩家信息");
             GuildNotFound = languageProp.getProperty("GuildNotFound","啊这，没有找到这个公会/凋谢");
+            PleaseKeyInteger = languageProp.getProperty("PleaseKeyInteger","请输入一个合法的整数呢qwq");
             return true;
         }
         if(languageFile.createNewFile()){
@@ -34,7 +35,8 @@ public class LanguageUtil {
             languageProp.setProperty("Unknown","未知");
             languageProp.setProperty("CantGetGameStats","无法获取该玩家信息");
             languageProp.setProperty("GuildNotFound","啊这，没有找到这个公会/凋谢");
-            languageProp.store(new FileWriter(languageFile),"MinecraftQueryPlugin LanguageHub V1.0");
+            languageProp.setProperty("PleaseKeyInteger","请输入一个合法的整数呢qwq");
+            languageProp.store(new FileWriter(languageFile),"MinecraftQueryPlugin LanguageHub V1.2");
             System.out.println("成功创建文件");
             propload(languageFile.getCanonicalPath());
         }

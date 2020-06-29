@@ -1,15 +1,13 @@
 package cn.mappyj.action;
 
+import cn.mappyj.action.skyblock.GetProfiles;
 import cn.mappyj.utils.LanguageUtil;
 import net.hypixel.api.HypixelAPI;
-import net.hypixel.api.reply.AbstractReply;
 import org.meowy.cqp.jcq.entity.CoolQ;
 
 import java.io.IOException;
-import java.util.Objects;
 import java.util.UUID;
 import java.util.concurrent.ExecutionException;
-import java.util.function.BiConsumer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -26,7 +24,7 @@ public class EventExecutor extends Thread{
     }
 
     public void run(){
-        Pattern pattern = Pattern.compile("/(hyp|mojang)\\s?(\\w+|)?\\s?(\\w+|)?\\s?(\\w+|)?");
+        Pattern pattern = Pattern.compile("/(hyp|mojang)\\s?(\\w+|)?\\s?(\\w+|)?\\s?(\\w+|)?\\s?(\\w+)?");
         Matcher matcher = pattern.matcher(msg);
         if(matcher.matches()){
             try {
@@ -94,6 +92,17 @@ public class EventExecutor extends Thread{
                             GetGuildInfo getGuildInfo = new GetGuildInfo(GroupID,CQ,apiKey,matcher.group(3),"player");
                         }
                         return true;
+                    case"skyblock":
+                    case"sb":
+                        switch (matcher.group(4)){
+                            case"":
+                                return false;
+                            case"list":
+                                GetProfiles getProfiles = new GetProfiles(GroupID,CQ,apiKey,matcher.group(3));
+                                return true;
+                            default:
+                                return false;
+                        }
                     default: return false;
                 }
             case "mojang":

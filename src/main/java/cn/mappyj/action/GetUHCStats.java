@@ -17,6 +17,7 @@ public class GetUHCStats extends AbstractGetPlayerStatsInfo{
 
     protected GetUHCStats(long GroupID, CoolQ CQ, HypixelAPI apiKey, String arg) throws InterruptedException, ExecutionException, IOException {
         super(GroupID, CQ, apiKey, arg, GameType.UHC.getDbName());
+        execute();
     }
 
     @Override

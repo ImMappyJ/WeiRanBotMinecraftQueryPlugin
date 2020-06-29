@@ -16,11 +16,11 @@ public class GetArcadeStats extends AbstractGetPlayerStatsInfo{
     protected GetArcadeStats(long GroupID, CoolQ CQ, HypixelAPI apiKey, String arg, String type) throws InterruptedException, ExecutionException, IOException {
         super(GroupID, CQ, apiKey, arg, GameType.ARCADE.getDbName());
         this.type = type; //miniwalls farmhunt
-        extraExecute();
+        execute();
     }
 
     @Override
-    protected void extraExecute() {
+    protected void execute() {
         if(isnull(statsJson)||isnull(achievementJson)) return;
         JsonElement json_Coins = statsJson.get("coins");
         StringBuilder msg = new StringBuilder();

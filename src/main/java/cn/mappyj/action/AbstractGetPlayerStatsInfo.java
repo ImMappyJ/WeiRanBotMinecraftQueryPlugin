@@ -13,17 +13,17 @@ import java.io.IOException;
 import java.util.Objects;
 import java.util.UUID;
 import java.util.concurrent.ExecutionException;
-import java.util.function.BiConsumer;
 
 public abstract class AbstractGetPlayerStatsInfo{
-    JsonObject statsJson;
-    JsonObject achievementJson;
-    String playerName;
+    protected JsonObject statsJson;
+    protected JsonObject achievementJson;
+    protected String playerName;
+    protected String uuid;
     private String type;
-    CoolQ CQ;
-    long GroupID;
-    HypixelAPI apiKey;
-    String arg;
+    protected CoolQ CQ;
+    protected long GroupID;
+    protected HypixelAPI apiKey;
+    protected String arg;
     protected AbstractGetPlayerStatsInfo(long GroupID, CoolQ CQ, HypixelAPI apiKey, String arg,String type) throws InterruptedException, ExecutionException, IOException {
         this.type = type;
         this.GroupID = GroupID;
@@ -31,7 +31,6 @@ public abstract class AbstractGetPlayerStatsInfo{
         this.apiKey = apiKey;
         this.arg = arg;
         getstatsJson();
-        execute();
     }
 
     protected void execute(){}
@@ -54,5 +53,6 @@ public abstract class AbstractGetPlayerStatsInfo{
         if(isnull(this.statsJson)){CQ.sendGroupMsg(GroupID,LanguageUtil.CantGetGameStats);return;}
         this.achievementJson = playerReply.getPlayer().get("achievements").getAsJsonObject();
         this.playerName = playerReply.getPlayer().get("displayname").getAsString();
+        this.uuid = playerReply.getPlayer().get("uuid").getAsString();
     }
 }

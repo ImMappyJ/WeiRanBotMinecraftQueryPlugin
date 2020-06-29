@@ -8,11 +8,13 @@ import org.meowy.cqp.jcq.entity.IAuth;
 import org.meowy.cqp.jcq.entity.ICQVer;
 import org.meowy.cqp.jcq.entity.IRequest;
 import org.meowy.cqp.jcq.event.JcqAppAbstract;
+import org.meowy.cqp.jcq.message.CQCode;
 
 import java.io.File;
 import java.io.IOException;
 
 public class minecraftqueryplugin extends JcqAppAbstract implements ICQVer, IAuth, IRequest {
+    public static String AppDirectory;
     public minecraftqueryplugin(){ }
 
     public minecraftqueryplugin(CoolQ CQ){
@@ -43,9 +45,10 @@ public class minecraftqueryplugin extends JcqAppAbstract implements ICQVer, IAut
     }
 
     public int enable() {
+        AppDirectory = appDirectory;
         try {
             if(!LanguageUtil.propload(appDirectory+File.separator+"language.properties")){
-
+                CQ.logInfo("加载失败",new IOException("Wrong load"));
             };
         } catch (IOException | InterruptedException e) {
             CQ.logInfo("啊咧 创建文件时出错了",e);
@@ -64,13 +67,16 @@ public class minecraftqueryplugin extends JcqAppAbstract implements ICQVer, IAut
     }
 
     public int groupMsg(int subType, int msgId, long fromGroup, long fromQQ, String fromAnonymous, String msg, int font) {
+        if(fromGroup!=491686344){
+            return 0;
+        }
         Thread executeCmd = new EventExecutor(fromGroup,msg,CQ);
         executeCmd.start();
         try {
             executeCmd.join();
-        } catch (Exception e) {
+        } catch (InterruptedException e) {
             CQ.sendGroupMsg(fromGroup,LanguageUtil.CatchException);
-            CQ.logInfo("",e);
+            e.printStackTrace();
         }
         return 0;
     }

@@ -18,7 +18,7 @@ public class GetHistoryName extends AbstractGet{
     @Override
     protected void execute() throws IOException {
         MojangCastUtil castUtil = new MojangCastUtil();
-        String[] names = castUtil.stringUUIDtoNameHistory(castUtil.nametoStringUUID(arg));
+        String[] names = castUtil.stringUUIDtoNameHistory(castUtil.nametoStringUUID(args[0]));
         StringBuilder namesList = new StringBuilder();
         StringBuilder msg = new StringBuilder();
         final int MaxNamesCount = 7;
@@ -28,11 +28,11 @@ public class GetHistoryName extends AbstractGet{
         }
         if(names.length>MaxNamesCount){
             for(int t = 1;t<=MaxNamesCount;t++) namesList.append(t).append(".").append(names[t - 1]).append("\n");
-            namesList.append("more info on:https://zh-cn.namemc.com/search?q=").append(arg);
+            namesList.append("more info on:https://zh-cn.namemc.com/search?q=").append(args[0]);
         }else{
             for(int t=1;t<=names.length;t++) namesList.append(t).append(".").append(names[t-1]).append("\n");
         }
-        msg.append("查询到").append(arg).append("的历史ID:\n").append(namesList.toString());
+        msg.append("查询到").append(args[0]).append("的历史ID:\n").append(namesList.toString());
         CQ.sendGroupMsg(GroupID,msg.toString());
     }
 }

@@ -21,17 +21,18 @@ public class GetGuildInfo extends AbstractGet{
     protected GetGuildInfo(long GroupID, CoolQ CQ, HypixelAPI apiKey, String arg,String type) throws InterruptedException, ExecutionException, IOException {
         super(GroupID, CQ, apiKey, arg);
         this.type = type.toLowerCase();
-        getGuildInfo();
+        execute();
     }
 
-    protected void getGuildInfo() throws IOException, ExecutionException, InterruptedException {
+    @Override
+    protected void execute() throws IOException, ExecutionException, InterruptedException {
         GuildReply guildReply;
         GuildReply.Guild.Member member = null,master = null;
         MojangCastUtil castUtil = new MojangCastUtil();
         switch (type){
             case"player":
                 CharProcessUtil processUtil = new CharProcessUtil();
-                String stringuuid = castUtil.nametoStringUUID(arg);
+                String stringuuid = castUtil.nametoStringUUID(args[0]);
                 if(isnull(stringuuid)){CQ.sendGroupMsg(GroupID,LanguageUtil.Mojang_InvalidName);return;}
                 UUID uuid =processUtil.stringUUIDToUUID(stringuuid);
                 guildReply = apiKey.getGuildByPlayer(uuid).get();
@@ -44,7 +45,7 @@ public class GetGuildInfo extends AbstractGet{
                 }
                 break;
             case"name":
-                guildReply = apiKey.getGuildByName(arg).get();
+                guildReply = apiKey.getGuildByName(args[0]).get();
                 if(isnull(guildReply.getGuild())){CQ.sendGroupMsg(GroupID,LanguageUtil.GuildNotFound);return;}
                 for(GuildReply.Guild.Member temp_Member:guildReply.getGuild().getMembers()){
                     if(temp_Member.getRank().toLowerCase().equals("guild master")){master = temp_Member;break;}
@@ -66,13 +67,13 @@ public class GetGuildInfo extends AbstractGet{
 
         if(!isnull(member)){
             String rank = !isnull(member.getRank())?member.getRank():"Default";
-            msg.append("[Hypixel]玩家").append(arg).append("所在公会信息:")
+            msg.append("[Hypixel]玩家").append(args[0]).append("所在公会信息:")
                     .append("\n").append("名称:").append(theGuild.getName()).append("  ").append("Tag:").append(theGuild.getTag())
                     .append("\n").append("简介:").append(theGuild.getDescription())
                     .append("\n").append("等级:").append(theGuild.getLevel()).append("  ").append("会长:").append(masterID)
                     .append("\n").append("创建日期:").append(theGuild.getCreated().withZoneSameInstant(ZoneId.of("Asia/Shanghai")).format(formatter))
                     .append("\n").append("主攻游戏:").append("\n").append(preferredGames.toString())
-                    .append("\n").append(arg).append("在公会中的信息:")
+                    .append("\n").append(args[0]).append("在公会中的信息:")
                     .append("\n").append("Rank:").append(rank)
                     .append("\n").append("加入日期:").append(member.getJoined().withZoneSameInstant(ZoneId.of("Asia/Shanghai")).format(formatter));
         }else{

@@ -1,5 +1,9 @@
 package cn.mappyj.utils;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
+
 import java.util.StringJoiner;
 import java.util.UUID;
 import java.util.regex.Matcher;
@@ -17,5 +21,10 @@ public class CharProcessUtil {
             return UUID.fromString(sj.toString());
         }
         return null;
+    }
+
+    public String jsonObjectToJsonString(JsonObject o){
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        return gson.toJson(o);
     }
 }

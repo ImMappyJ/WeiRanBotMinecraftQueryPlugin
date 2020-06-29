@@ -20,6 +20,7 @@ import java.util.function.BiConsumer;
 public class GetPlayerInfo extends AbstractGet {
     protected GetPlayerInfo(long GroupID, CoolQ CQ, HypixelAPI apiKey,String arg) throws InterruptedException, ExecutionException, IOException {
         super(GroupID,CQ,apiKey,arg);
+        execute();
     }
 
     @Override
@@ -27,7 +28,7 @@ public class GetPlayerInfo extends AbstractGet {
         try{
             CharProcessUtil charProcessUtil = new CharProcessUtil();
             MojangCastUtil mojangCastUtil = new MojangCastUtil();
-            UUID uuid = charProcessUtil.stringUUIDToUUID(mojangCastUtil.nametoStringUUID(arg));
+            UUID uuid = charProcessUtil.stringUUIDToUUID(mojangCastUtil.nametoStringUUID(args[0]));
             if(isnull(uuid)){
                 CQ.sendGroupMsg(GroupID, LanguageUtil.Mojang_InvalidName);
                 return;

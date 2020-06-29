@@ -7,19 +7,17 @@ import org.meowy.cqp.jcq.entity.CoolQ;
 import java.io.IOException;
 import java.util.Objects;
 import java.util.concurrent.ExecutionException;
-import java.util.function.BiConsumer;
 
 public abstract class AbstractGet extends Thread{
-    CoolQ CQ;
-    long GroupID;
-    HypixelAPI apiKey;
-    String arg;
-    protected AbstractGet(long GroupID, CoolQ CQ, HypixelAPI apiKey,String arg) throws InterruptedException, ExecutionException, IOException {
+    protected CoolQ CQ;
+    protected long GroupID;
+    protected HypixelAPI apiKey;
+    protected String[] args;
+    protected AbstractGet(long GroupID, CoolQ CQ, HypixelAPI apiKey,String... args) throws InterruptedException, ExecutionException, IOException {
         this.CQ = CQ;
         this.GroupID = GroupID;
         this.apiKey= apiKey;
-        this.arg = arg;
-        execute();
+        this.args = args;
     }
 
     protected void execute() throws IOException, ExecutionException, InterruptedException {}

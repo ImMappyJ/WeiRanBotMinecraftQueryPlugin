@@ -14,6 +14,7 @@ import java.util.function.BiConsumer;
 public class GetBedWarsStats extends AbstractGetPlayerStatsInfo{
     protected GetBedWarsStats(long GroupID, CoolQ CQ, HypixelAPI apiKey, String arg) throws InterruptedException, ExecutionException, IOException {
         super(GroupID, CQ, apiKey, arg, GameType.BEDWARS.getDbName());
+        execute();
     }
 
     @Override
