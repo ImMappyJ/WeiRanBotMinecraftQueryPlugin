@@ -1,5 +1,6 @@
 package cn.mappyj.action;
 
+import cn.mappyj.action.skyblock.BoundProfiles;
 import cn.mappyj.action.skyblock.GetProfiles;
 import cn.mappyj.utils.LanguageUtil;
 import net.hypixel.api.HypixelAPI;
@@ -99,6 +100,9 @@ public class EventExecutor extends Thread{
                                 return false;
                             case"list":
                                 GetProfiles getProfiles = new GetProfiles(GroupID,CQ,apiKey,matcher.group(3));
+                                return true;
+                            case"bound":
+                                BoundProfiles boundProfiles = new BoundProfiles(GroupID,CQ,apiKey,matcher.group(3),matcher.group(5));
                                 return true;
                             default:
                                 return false;

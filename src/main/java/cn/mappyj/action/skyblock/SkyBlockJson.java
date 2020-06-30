@@ -20,35 +20,17 @@ public class SkyBlockJson extends AbstractSkyBlock{
 
     protected JsonObject perJson = new JsonObject();
     protected String uuid;
-    protected File file = new File(minecraftqueryplugin.AppDirectory+File.separator+"skyblock"+File.separator+"profiles"+File.separator+uuid+".json");
+    protected File file;
 
-    protected SkyBlockJson(long GroupID, CoolQ CQ, HypixelAPI apiKey, String arg) throws InterruptedException, ExecutionException, IOException {
-        super(GroupID, CQ, apiKey, arg);
+    protected SkyBlockJson(long GroupID, CoolQ CQ, HypixelAPI apiKey, String... args) throws InterruptedException, ExecutionException, IOException {
+        super(GroupID, CQ, apiKey, args);
     }
 
-    private void getJson() throws IOException {
-        FileInputStream inputStream = new FileInputStream(file);
-        byte[] temp = new byte[(int)file.length()];
-        if(inputStream.read(temp) < file.length()){
-            inputStream.close();
-            throw new FilerException("So Large File");
-        }else{
-            inputStream.close();
-            JsonParser parser = new JsonParser();
-            JsonElement temp_Object = parser.parse(new String(temp));
-            if(temp_Object.isJsonObject()){
-                perJson = temp_Object.getAsJsonObject();
-            }
-        }
-    }
-
-    protected void checkFile() throws IOException {
-        if(!file.createNewFile()){
-            System.out.println(LanguageUtil.CatchException);
-        }
+    protected File getFile(){
+        return new File(minecraftqueryplugin.AppDirectory+File.separator+"skyblock"+File.separator+"profiles"+File.separator+uuid+".json");
     }
 }
 
-class WriteLock{
-    protected static ReadWriteLock ProfileLock = new ReentrantReadWriteLock();
+class RWLock {
+    public static ReadWriteLock ProfileLock = new ReentrantReadWriteLock();
 }

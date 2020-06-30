@@ -3,6 +3,7 @@ package cn.mappyj.action;
 import cn.mappyj.utils.CharProcessUtil;
 import cn.mappyj.utils.LanguageUtil;
 import cn.mappyj.utils.MojangCastUtil;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import net.hypixel.api.HypixelAPI;
 import net.hypixel.api.reply.AbstractReply;
@@ -49,9 +50,12 @@ public abstract class AbstractGetPlayerStatsInfo{
         }
         PlayerReply playerReply = apiKey.getPlayerByUuid(uuid).get();
         if(isnull(playerReply.getPlayer())){CQ.sendGroupMsg(GroupID,LanguageUtil.Hypixel_InvalidName);return;}
-        this.statsJson = playerReply.getPlayer().get("stats").getAsJsonObject().get(type).getAsJsonObject();
-        if(isnull(this.statsJson)){CQ.sendGroupMsg(GroupID,LanguageUtil.CantGetGameStats);return;}
-        this.achievementJson = playerReply.getPlayer().get("achievements").getAsJsonObject();
+        JsonElement ele_stats = playerReply.getPlayer().get("stats").getAsJsonObject().get(type),
+                ele_ach = playerReply.getPlayer().get("stats").getAsJsonObject().get(type);
+
+        this.statsJson = isnull(ele_stats)?null:ele_stats.getAsJsonObject();
+        this.achievementJson = isnull(ele_ach)?null:ele_ach.getAsJsonObject();
+        if(isnull(this.statsJson)&&isnull(this.achievementJson)){CQ.sendGroupMsg(GroupID,LanguageUtil.CantGetGameStats);return;}
         this.playerName = playerReply.getPlayer().get("displayname").getAsString();
         this.uuid = playerReply.getPlayer().get("uuid").getAsString();
     }

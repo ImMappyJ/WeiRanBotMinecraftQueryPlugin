@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.util.concurrent.ExecutionException;
 
 public abstract class AbstractSkyBlock extends AbstractGet {
-
+    protected final String type = GameType.SKYBLOCK.getDbName();
     protected AbstractSkyBlock(long GroupID, CoolQ CQ, HypixelAPI apiKey,String... args) throws InterruptedException, ExecutionException, IOException {
         super(GroupID, CQ, apiKey, args);
     }
