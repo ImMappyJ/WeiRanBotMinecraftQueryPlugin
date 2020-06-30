@@ -37,7 +37,7 @@ public class BoundProfiles extends SkyBlockJson {
         try {
             perJson = new GetFileTextUtil().getJson(super.file);
             if(isnull(perJson) || perJson.get(uuid).isJsonNull()){
-                CQ.sendGroupMsg(GroupID,"请输入/hyp sb ID list查看存档列表后再进行绑定操作");
+                GetProfiles getProfiles = new GetProfiles(GroupID,CQ,apiKey,ID);
                 return;
             }
             JsonArray profilesList = perJson.get(uuid).getAsJsonArray();
@@ -47,7 +47,7 @@ public class BoundProfiles extends SkyBlockJson {
             StringBuilder msg = new StringBuilder();
             msg.append("成功绑定").append(entry.getKey()).append("存档");
             CQ.sendGroupMsg(GroupID,msg.toString());
-        } catch (IOException e) {
+        } catch (IOException | ExecutionException | InterruptedException e) {
             e.printStackTrace();
             CQ.sendGroupMsg(GroupID,LanguageUtil.CatchException);
         }

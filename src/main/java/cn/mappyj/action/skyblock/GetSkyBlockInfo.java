@@ -141,7 +141,7 @@ public class GetSkyBlockInfo extends SkyBlockJson{
     }
 
     private JsonObject getSlayerLevelKind(JsonObject self,String kind){
-        return isnull(self.get("slayer_bosses").getAsJsonObject().get(kind).getAsJsonObject().get("claimed_levels"))?null:self.get("slayer_bosses").getAsJsonObject().get(kind).getAsJsonObject().get("claimed_levels").getAsJsonObject();
+        return isnull(self.get("slayer_bosses"))?null:isnull(self.get("slayer_bosses").getAsJsonObject().get(kind).getAsJsonObject().get("claimed_levels"))?null:self.get("slayer_bosses").getAsJsonObject().get(kind).getAsJsonObject().get("claimed_levels").getAsJsonObject();
     }
 
     private String returnActivePet(JsonElement Pets){
