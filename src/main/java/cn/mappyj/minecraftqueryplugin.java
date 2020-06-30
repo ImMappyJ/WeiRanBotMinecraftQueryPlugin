@@ -67,9 +67,6 @@ public class minecraftqueryplugin extends JcqAppAbstract implements ICQVer, IAut
     }
 
     public int groupMsg(int subType, int msgId, long fromGroup, long fromQQ, String fromAnonymous, String msg, int font) {
-        if(fromGroup!=491686344){
-            return 0;
-        }
         Thread executeCmd = new EventExecutor(fromGroup,msg,CQ);
         executeCmd.start();
         try {
