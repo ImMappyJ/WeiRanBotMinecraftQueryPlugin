@@ -13,15 +13,15 @@ import java.util.concurrent.ExecutionException;
 
 public class BoundProfiles extends SkyBlockJson {
 
-    int index;
-    String ID;
+    private int index;
+    private final String ID;
 
     public BoundProfiles(long GroupID, CoolQ CQ, HypixelAPI apiKey, String... args) throws InterruptedException, ExecutionException, IOException {
         super(GroupID, CQ, apiKey, args);
         this.ID = args[0];
         super.uuid = getStringUUID();
-        if(!isnull(uuid)){
-            file = getFile();
+        if(!isnull(super.uuid)){
+            super.file = getFile();
             //args[0] ID [1] Index
             if(!args[1].matches("[1-9]+")){
                 CQ.sendGroupMsg(GroupID, LanguageUtil.PleaseKeyInteger);
@@ -43,7 +43,7 @@ public class BoundProfiles extends SkyBlockJson {
             JsonArray profilesList = perJson.get(uuid).getAsJsonArray();
             if(profilesList.get(this.index-1).isJsonNull()){CQ.sendGroupMsg(GroupID,"序号输入错误");return;}
             Map.Entry<String,JsonElement> entry = profilesList.get(this.index-1).getAsJsonObject().entrySet().iterator().next();
-            addToJson(entry.getValue().getAsString());
+            addToJson(entry.getKey(),entry.getValue().getAsString());
             StringBuilder msg = new StringBuilder();
             msg.append("成功绑定").append(entry.getKey()).append("存档");
             CQ.sendGroupMsg(GroupID,msg.toString());
@@ -53,14 +53,15 @@ public class BoundProfiles extends SkyBlockJson {
         }
     }
 
-    private void addToJson(String id){
+    private void addToJson(String name,String id){
         if(!new CheckFileUtil().checkFile(file)){
             CQ.sendGroupMsg(GroupID,LanguageUtil.CatchException);
             return;
         }
         RWLock.ProfileLock.writeLock().lock();
         try{
-            super.perJson.addProperty("profile",id);
+            super.perJson.addProperty("profile_id",id);
+            super.perJson.addProperty("profile_name",name);
             FileWriter writer = new FileWriter(file);
             CharProcessUtil processUtil = new CharProcessUtil();
             writer.write(processUtil.jsonObjectToJsonString(super.perJson));

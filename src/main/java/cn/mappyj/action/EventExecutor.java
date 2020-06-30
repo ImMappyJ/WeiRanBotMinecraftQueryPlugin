@@ -2,6 +2,7 @@ package cn.mappyj.action;
 
 import cn.mappyj.action.skyblock.BoundProfiles;
 import cn.mappyj.action.skyblock.GetProfiles;
+import cn.mappyj.action.skyblock.GetSkyBlockInfo;
 import cn.mappyj.utils.LanguageUtil;
 import net.hypixel.api.HypixelAPI;
 import org.meowy.cqp.jcq.entity.CoolQ;
@@ -97,7 +98,8 @@ public class EventExecutor extends Thread{
                     case"sb":
                         switch (matcher.group(4)){
                             case"":
-                                return false;
+                                GetSkyBlockInfo getSkyBlockInfo = new GetSkyBlockInfo(GroupID,CQ,apiKey,matcher.group(3));
+                                return true;
                             case"list":
                                 GetProfiles getProfiles = new GetProfiles(GroupID,CQ,apiKey,matcher.group(3));
                                 return true;
