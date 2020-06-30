@@ -59,7 +59,7 @@ public class GetSkyBlockInfo extends SkyBlockJson{
 
         double
                 Purse = isnull(json_Purse)?0:json_Purse.getAsDouble(),
-                bank_deposit = isnull( profileReply.getProfile().get("banking").getAsJsonObject().get("balance"))?0:profileReply.getProfile().get("banking").getAsJsonObject().get("balance").getAsDouble();
+                bank_deposit = isnull(profileReply.getProfile().get("banking"))?0:isnull(profileReply.getProfile().get("banking").getAsJsonObject().get("balance"))?0:profileReply.getProfile().get("banking").getAsJsonObject().get("balance").getAsDouble();
         NumberFormat format = NumberFormat.getInstance();
         format.setMaximumFractionDigits(2);
         int
