@@ -33,7 +33,7 @@ public class GetSkyBlockInfo extends SkyBlockJson{
     protected void execute() throws IOException, ExecutionException, InterruptedException {
         String profile_ID = getprofileid();
         String profile_Name = getprofilename();
-        if(isnull(profile_ID))return;
+        if(isnull(profile_ID)){GetProfiles getProfiles = new GetProfiles(GroupID,CQ,apiKey,ID);return;}
         SkyBlockProfileReply profileReply = apiKey.getSkyBlockProfile(profile_ID).get();
         if(isnull(profileReply.getProfile())){CQ.sendGroupMsg(GroupID,"该账号绑定存档不存在!请重新绑定!");return;}
         JsonObject
@@ -78,7 +78,7 @@ public class GetSkyBlockInfo extends SkyBlockJson{
                 SlayerSpider = isnull(json_SlayerSpider)?0:json_SlayerSpider.getAsJsonObject().entrySet().size(),
                 SlayerZombie = isnull(json_SlayerZombie)?0:json_SlayerZombie.getAsJsonObject().entrySet().size();
         String[] temp_LegPets = returnLegPets(json_Pets),
-                LegPets = isnull(temp_LegPets)?new String[]{LanguageUtil.Unknown}:new RemoveNull().deleteArrayNull(temp_LegPets);
+                LegPets = isnull(temp_LegPets)?new String[]{LanguageUtil.Unknown}:temp_LegPets.length<=0?new String[]{LanguageUtil.Unknown}:new RemoveNull().deleteArrayNull(temp_LegPets);
         String temp_ActivePet = returnActivePet(json_Pets),
                 ActivePet = isnull(temp_ActivePet)?LanguageUtil.Unknown:temp_ActivePet;
 
@@ -119,7 +119,7 @@ public class GetSkyBlockInfo extends SkyBlockJson{
     private String getprofileid(){
         try {
             perJson = new GetFileTextUtil().getJson(super.file);
-            if(isnull(perJson)||isnull(super.perJson.get("profile_id"))){CQ.sendGroupMsg(GroupID,"请输入/hyp sb ID list 查看存档列表后\n输入/hyp sb ID bound [序号]进行绑定");return null;}
+            if(isnull(perJson)||isnull(super.perJson.get("profile_id")))return null;
             return super.perJson.get("profile_id").getAsString();
         } catch (IOException e) {
             e.printStackTrace();

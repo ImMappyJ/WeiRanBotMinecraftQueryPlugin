@@ -12,6 +12,7 @@ import javax.annotation.processing.FilerException;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.UUID;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;

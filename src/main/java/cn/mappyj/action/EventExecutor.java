@@ -3,6 +3,7 @@ package cn.mappyj.action;
 import cn.mappyj.action.skyblock.BoundProfiles;
 import cn.mappyj.action.skyblock.GetProfiles;
 import cn.mappyj.action.skyblock.GetSkyBlockInfo;
+import cn.mappyj.action.skyblock.GetSkyBlockSkills;
 import cn.mappyj.utils.LanguageUtil;
 import net.hypixel.api.HypixelAPI;
 import org.meowy.cqp.jcq.entity.CoolQ;
@@ -105,6 +106,9 @@ public class EventExecutor extends Thread{
                                 return true;
                             case"bound":
                                 BoundProfiles boundProfiles = new BoundProfiles(GroupID,CQ,apiKey,matcher.group(3),matcher.group(5));
+                                return true;
+                            case"skill":
+                                GetSkyBlockSkills getSkyBlockSkills = new GetSkyBlockSkills(GroupID,CQ,apiKey,matcher.group(3));
                                 return true;
                             default:
                                 return false;

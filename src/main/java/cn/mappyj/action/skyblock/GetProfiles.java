@@ -45,7 +45,7 @@ public class GetProfiles extends SkyBlockJson {
         if(isnull(playerReply.getPlayer())){CQ.sendGroupMsg(GroupID,LanguageUtil.Hypixel_InvalidName);return;}
 
         JsonElement ele_stats = playerReply.getPlayer().get("stats").getAsJsonObject().get(type),
-                ele_ach = playerReply.getPlayer().get("stats").getAsJsonObject().get(type);
+                ele_ach = playerReply.getPlayer().get("achievements");
 
         this.statsJson = isnull(ele_stats)?null:ele_stats.getAsJsonObject();
         this.achievementJson = isnull(ele_ach)?null:ele_ach.getAsJsonObject();
