@@ -1,12 +1,8 @@
 package cn.mappyj.action.skyblock;
 
 import cn.mappyj.action.AbstractGet;
-import cn.mappyj.action.AbstractGetPlayerStatsInfo;
-import cn.mappyj.minecraftqueryplugin;
+import cn.mappyj.MinecraftQueryPlugin;
 import cn.mappyj.utils.LanguageUtil;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import net.hypixel.api.HypixelAPI;
 import net.hypixel.api.util.GameType;
 import org.meowy.cqp.jcq.entity.CoolQ;
@@ -22,7 +18,7 @@ public abstract class AbstractSkyBlock extends AbstractGet {
     }
 
     static{
-        File file = new File(minecraftqueryplugin.AppDirectory+File.separator+"skyblock"+File.separator+"profiles");
+        File file = new File(MinecraftQueryPlugin.AppDirectory+File.separator+"skyblock"+File.separator+"profiles");
         if(!file.exists()){
             if (!file.mkdirs()) {
                 System.out.println(LanguageUtil.CatchException);

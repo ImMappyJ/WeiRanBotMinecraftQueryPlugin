@@ -8,21 +8,20 @@ import org.meowy.cqp.jcq.entity.IAuth;
 import org.meowy.cqp.jcq.entity.ICQVer;
 import org.meowy.cqp.jcq.entity.IRequest;
 import org.meowy.cqp.jcq.event.JcqAppAbstract;
-import org.meowy.cqp.jcq.message.CQCode;
 
 import java.io.File;
 import java.io.IOException;
 
-public class minecraftqueryplugin extends JcqAppAbstract implements ICQVer, IAuth, IRequest {
+public class MinecraftQueryPlugin extends JcqAppAbstract implements ICQVer, IAuth, IRequest {
     public static String AppDirectory;
-    public minecraftqueryplugin(){ }
+    public MinecraftQueryPlugin(){ }
 
-    public minecraftqueryplugin(CoolQ CQ){
+    public MinecraftQueryPlugin(CoolQ CQ){
         super(CQ);
     }
 
     public static void main(String[] args){
-        minecraftqueryplugin minecraftQueryPlugin = new minecraftqueryplugin();
+        MinecraftQueryPlugin minecraftQueryPlugin = new MinecraftQueryPlugin();
         CoolQ CQ = minecraftQueryPlugin.getCoolQ();
         minecraftQueryPlugin.startup();
         minecraftQueryPlugin.enable();

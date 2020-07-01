@@ -1,18 +1,12 @@
 package cn.mappyj.action.skyblock;
 
-import cn.mappyj.minecraftqueryplugin;
-import cn.mappyj.utils.LanguageUtil;
-import com.google.gson.JsonElement;
+import cn.mappyj.MinecraftQueryPlugin;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import net.hypixel.api.HypixelAPI;
 import org.meowy.cqp.jcq.entity.CoolQ;
 
-import javax.annotation.processing.FilerException;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.UUID;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
@@ -28,7 +22,7 @@ public class SkyBlockJson extends AbstractSkyBlock{
     }
 
     protected File getFile(){
-        return new File(minecraftqueryplugin.AppDirectory+File.separator+"skyblock"+File.separator+"profiles"+File.separator+uuid+".json");
+        return new File(MinecraftQueryPlugin.AppDirectory+File.separator+"skyblock"+File.separator+"profiles"+File.separator+uuid+".json");
     }
 }
 
