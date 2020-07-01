@@ -57,7 +57,7 @@ public class GetSkyBlockSkills extends AbstractGet {
         Enchant:22  Alchemy:22
          */
         StringBuilder msg = new StringBuilder();
-        msg.append("[Hypixel]玩家").append(playerName).append("的Skyblock技能表:")
+        msg.append("[Hypixel]玩家").append(playerName).append("的Skyblock技能等级:")
                 .append("\n").append("Combat:").append(Combat).append("  ").append("Mining:").append(Mining)
                 .append("\n").append("Farming:").append(Farming).append("  ").append("Fishing:").append(Fishing)
                 .append("\n").append("Foraging:").append(Foraging).append("  ").append("Taming:").append(Taming)
