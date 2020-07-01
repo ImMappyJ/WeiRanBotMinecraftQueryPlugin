@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="cn.mappyj.MinecraftQueryPlugin">
+    <output-path>$PROJECT_DIR$/out/artifacts/cn_mappyj_MinecraftQueryPlugin</output-path>
+    <root id="archive" name="cn.mappyj.MinecraftQueryPlugin.jar">
+      <element id="module-output" name="MinecraftQueryPlugin" />
+    </root>
+  </artifact>
+</component>
