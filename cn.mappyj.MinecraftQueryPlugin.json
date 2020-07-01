@@ -13,10 +13,24 @@
   "description": "WeiRanBot's QueryPlugin",
   "event": [ // 事件列表，同一事件类型可重复定义（发布前请删除无用事件）
     {
+      "id": 1, // 事件ID
+      "type": 21, // 事件类型
+      "name": "私聊消息处理", // 事件名称
+      "function": "privateMsg", // 事件对应函数
+      "priority": 30000 // 事件优先级(参见 cq.im/deveventpriority)
+    },
+    {
       "id": 2,
       "type": 2,
       "name": "群消息处理",
       "function": "groupMsg",
+      "priority": 30000
+    },
+    {
+      "id": 9,
+      "type": 302,
+      "name": "群添加请求处理",
+      "function": "requestAddGroup",
       "priority": 30000
     },
     {
@@ -55,6 +69,8 @@
     //20,  //[敏感]取Cookies	getCookies / getCsrfToken
     //30,  //接收语音			getRecord
     101, //发送群消息			sendGroupMsg
+    106, //发送私聊消息		sendPrivateMsg
+    151, //置群添加请求		setGroupAddRequest
     130, //取群成员信息		getGroupMemberInfoV2 / getGroupMemberInfo
     132,   //取群信息           getGroupInfo
   ]

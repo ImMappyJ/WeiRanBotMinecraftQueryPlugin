@@ -1,35 +1,44 @@
 package cn.mappyj.action;
 
+import cn.mappyj.action.api.CheckGroupAPI;
 import cn.mappyj.action.skyblock.BoundProfiles;
 import cn.mappyj.action.skyblock.GetProfiles;
 import cn.mappyj.action.skyblock.GetSkyBlockInfo;
 import cn.mappyj.action.skyblock.GetSkyBlockSkills;
+import cn.mappyj.utils.HypixelApiKeyUtil;
 import cn.mappyj.utils.LanguageUtil;
 import net.hypixel.api.HypixelAPI;
 import org.meowy.cqp.jcq.entity.CoolQ;
+import org.meowy.cqp.jcq.entity.Group;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.util.UUID;
 import java.util.concurrent.ExecutionException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class EventExecutor extends Thread{
-    private final HypixelAPI apiKey = new HypixelAPI(UUID.fromString("ad8231a5-ee7a-4aad-a83a-486dd3468fbf"));
+public class GroupEventExecutor extends Thread{
     private final CoolQ CQ;
     private final String msg;
-    private final long GroupID;
+    private final UUID key;
+    private final long GroupID,QQID;
+    private HypixelAPI apiKey;
 
-    public EventExecutor(long GroupID, String msg, CoolQ CQ){
+    public GroupEventExecutor(long GroupID,long QQID, String msg, CoolQ CQ){
         this.CQ = CQ;
         this.GroupID = GroupID;
         this.msg = msg;
+        this.QQID = QQID;
+        key = new HypixelApiKeyUtil(GroupID).getRandomApiKey();
     }
 
     public void run(){
         Pattern pattern = Pattern.compile("/(hyp|mojang)\\s?(\\w+|)?\\s?(\\w+|)?\\s?(\\w+|)?\\s?(\\w+)?");
         Matcher matcher = pattern.matcher(msg);
         if(matcher.matches()){
+            if(key == null){CQ.sendGroupMsg(GroupID,LanguageUtil.Hypixel_InvalidKey);return;}
+            apiKey = new HypixelAPI(key);
             try {
                 if(!commandChecker(matcher)){
                     CQ.sendGroupMsg(GroupID, LanguageUtil.Wrong_Command);
@@ -97,7 +106,7 @@ public class EventExecutor extends Thread{
                         return true;
                     case"skyblock":
                     case"sb":
-                        switch (matcher.group(4)){
+                        switch (matcher.group(4).toLowerCase()){
                             case"":
                                 GetSkyBlockInfo getSkyBlockInfo = new GetSkyBlockInfo(GroupID,CQ,apiKey,matcher.group(3));
                                 return true;
@@ -112,6 +121,13 @@ public class EventExecutor extends Thread{
                                 return true;
                             default:
                                 return false;
+                        }
+                    case"api":
+                        switch (matcher.group(3).toLowerCase()){
+                            case"":
+                                if(CQ.getGroupMemberInfo(GroupID,QQID).getAuthority().value()!=1){ new CheckGroupAPI(CQ,GroupID); }else{CQ.sendGroupMsg(GroupID,LanguageUtil.NoPermission);}
+                                return true;
+                            default:return false;
                         }
                     default: return false;
                 }

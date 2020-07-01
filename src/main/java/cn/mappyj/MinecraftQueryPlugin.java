@@ -1,7 +1,8 @@
 package cn.mappyj;
 
 
-import cn.mappyj.action.EventExecutor;
+import cn.mappyj.action.GroupEventExecutor;
+import cn.mappyj.action.PrivateEventExecutor;
 import cn.mappyj.utils.LanguageUtil;
 import org.meowy.cqp.jcq.entity.CoolQ;
 import org.meowy.cqp.jcq.entity.IAuth;
@@ -61,16 +62,24 @@ public class MinecraftQueryPlugin extends JcqAppAbstract implements ICQVer, IAut
         return 0;
     }
 
-    public int privateMsg(int i, int i1, long l, String s, int i2) {
+    public int privateMsg(int subType, int msgId, long fromQQ, String msg, int font) {
+        Thread executeCmd = new PrivateEventExecutor(fromQQ,msg,CQ);
+        executeCmd.start();
+        try {
+            executeCmd.join();
+        } catch (Exception e) {
+            CQ.sendPrivateMsg(fromQQ,LanguageUtil.CatchException);
+            e.printStackTrace();
+        }
         return 0;
     }
 
     public int groupMsg(int subType, int msgId, long fromGroup, long fromQQ, String fromAnonymous, String msg, int font) {
-        Thread executeCmd = new EventExecutor(fromGroup,msg,CQ);
+        Thread executeCmd = new GroupEventExecutor(fromGroup,fromQQ,msg,CQ);
         executeCmd.start();
         try {
             executeCmd.join();
-        } catch (InterruptedException e) {
+        } catch (Exception e) {
             CQ.sendGroupMsg(fromGroup,LanguageUtil.CatchException);
             e.printStackTrace();
         }
