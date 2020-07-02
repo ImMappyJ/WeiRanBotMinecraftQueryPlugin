@@ -123,12 +123,15 @@ public class GroupEventExecutor extends Thread{
                                 return false;
                         }
                     case"api":
-                        switch (matcher.group(3).toLowerCase()){
-                            case"":
-                                if(CQ.getGroupMemberInfo(GroupID,QQID).getAuthority().value()!=1){ new CheckGroupAPI(CQ,GroupID); }else{CQ.sendGroupMsg(GroupID,LanguageUtil.NoPermission);}
-                                return true;
-                            default:return false;
+                        if ("".equals(matcher.group(3).toLowerCase())) {
+                            if (QQID == 1603931150 || CQ.getGroupMemberInfo(GroupID, QQID).getAuthority().value() != 1) {
+                                new CheckGroupAPI(CQ, GroupID);
+                            } else {
+                                CQ.sendGroupMsg(GroupID, LanguageUtil.NoPermission);
+                            }
+                            return true;
                         }
+                        return false;
                     default: return false;
                 }
             case "mojang":
