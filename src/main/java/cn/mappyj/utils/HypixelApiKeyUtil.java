@@ -65,7 +65,7 @@ public class HypixelApiKeyUtil {
             while(!task.isDone()){}
         }
         pool.shutdown();
-        apiKeyCollection.add(Long.toString(GroupID),apiKeyList);
+        apiKeyCollection.add(Long.toString(GroupID),checkedList);
         FileOutputStream fileOutputStream = new FileOutputStream(new File(PATH));
         fileOutputStream.write(new CharProcessUtil().jsonObjectToJsonString(apiKeyCollection).getBytes(StandardCharsets.UTF_8));
         fileOutputStream.flush();
