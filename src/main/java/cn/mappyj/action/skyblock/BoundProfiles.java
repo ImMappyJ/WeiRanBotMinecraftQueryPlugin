@@ -23,7 +23,7 @@ public class BoundProfiles extends SkyBlockJson {
         if(!isnull(super.uuid)){
             super.file = getFile();
             //args[0] ID [1] Index
-            if(!args[1].matches("[1-9]+")){
+            if(args[1]==null||!args[1].matches("[1-9]+")){
                 CQ.sendGroupMsg(GroupID, LanguageUtil.PleaseKeyInteger);
             }else{
                 this.index = Integer.parseInt(args[1]);
